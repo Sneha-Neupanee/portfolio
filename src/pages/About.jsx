@@ -12,11 +12,11 @@ const About = () => {
   ];
 
   const funFacts = [
-    'I can code for hours without realizing time has passed ⏰',
-    'Coffee is my debugging fuel ☕',
-    'I believe every bug is just a feature in disguise 🐛',
-    'I crush gym PRs and coding deadlines equally 💪',
-    'My playlists range from lo-fi beats to heavy metal 🎵'
+    'I can code for hours without realizing time has passed',
+    'Coffee is my debugging fuel',
+    'I believe every bug is just a feature in disguise',
+    'I crush gym PRs and coding deadlines equally',
+    'My playlists range from lo-fi beats to heavy metal'
   ];
 
   return (
@@ -32,7 +32,7 @@ const About = () => {
                   <img src="/profile.jpg" alt="Sneha Neupane" />
                 </div>
                 <div className="intro-text">
-                  <h2>Hey there! 👋</h2>
+                  <h2>Hey there!</h2>
                   <p>
                     I'm Sneha Neupane, a passionate Full Stack Developer who loves turning ideas into 
                     reality through code. My journey in tech started with curiosity and evolved into 
@@ -47,7 +47,7 @@ const About = () => {
                   <p>
                     I'm a problem solver at heart, constantly learning and experimenting with new 
                     technologies. Whether it's front-end magic with React or back-end wizardry with 
-                    Node.js, I'm always up for a challenge!
+                    Node.js and Python, I'm always up for a challenge!
                   </p>
                 </div>
               </div>
@@ -73,7 +73,7 @@ const About = () => {
               <ul className="facts-list">
                 {funFacts.map((fact, index) => (
                   <li key={index} className="fact-item">
-                    <span className="fact-bullet">✨</span>
+                    <span className="fact-bullet">▸</span>
                     {fact}
                   </li>
                 ))}
@@ -103,7 +103,7 @@ const About = () => {
                   <div className="timeline-dot"></div>
                   <div className="timeline-content">
                     <h3>Software Engineering Intern</h3>
-                    <p>Gained real-world experience at Strio Consulting</p>
+                    <p>Gained real-world experience at SRIYOG Consulting</p>
                   </div>
                 </div>
                 <div className="timeline-item">

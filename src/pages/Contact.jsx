@@ -40,8 +40,8 @@ const Contact = () => {
     {
       icon: '📧',
       title: 'Email',
-      value: 'sneha.neupane@example.com',
-      link: 'mailto:sneha.neupane@example.com'
+      value: 'neupaneesneha648@gmail.com',
+      link: 'mailto:neupaneesneha648@gmail.com'
     },
     {
       icon: '💼',
@@ -68,8 +68,8 @@ const Contact = () => {
       <div className="contact-container">
         <h1 className="section-title">Get In Touch</h1>
         <p className="contact-intro">
-          Have a project in mind or just want to say hi? Feel free to reach out! 
-          I'm always open to discussing new opportunities and collaborations. 💬
+          Have a project in mind or want to collaborate? Let's create something amazing together! 
+          I'm always excited to discuss new opportunities and innovative ideas.
         </p>
 
         <div className="contact-content">
@@ -170,7 +170,7 @@ const Contact = () => {
 
             <Card className="social-media-card">
               <h2>Let's Connect!</h2>
-              <p>Follow me on social media for updates and cool content!</p>
+              <p>Follow me on social media for updates and projects!</p>
               <div className="social-buttons">
                 <a 
                   href="https://github.com/Sneha-Neupanee" 
@@ -196,7 +196,7 @@ const Contact = () => {
               <ul className="availability-list">
                 <li>Freelance Projects</li>
                 <li>Full-time Opportunities</li>
-                <li>Collaboration</li>
+                <li>Collaboration & Partnerships</li>
               </ul>
             </Card>
           </div>

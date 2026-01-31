@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
+import Button from '../components/Button';
 import '../styles/Projects.css';
 
 const Projects = () => {
@@ -7,35 +8,35 @@ const Projects = () => {
     {
       id: 1,
       title: 'K Handyman',
-      description: 'A comprehensive full-stack MERN application connecting homeowners with skilled handymen in Kathmandu. Features real-time chat, smart provider matching with Bayesian ranking, interactive maps, and complete service management.',
+      description: 'A comprehensive full-stack MERN marketplace connecting homeowners with skilled handymen in Kathmandu. Features real-time chat with Socket.IO, intelligent provider matching using Bayesian ranking algorithms, interactive Leaflet maps for location tracking, and complete service lifecycle management from booking to payment.',
       image: '/k-handyman.png',
-      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'Leaflet', 'JWT'],
+      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'Leaflet', 'JWT', 'Multer'],
       liveLink: 'https://mernhandymanfinal.vercel.app/',
       githubLink: 'https://github.com/Sneha-Neupanee/mernhandymanfinal',
       deployed: 'full-stack',
-      features: ['Real-time Chat', 'Smart Matching Algorithm', 'Interactive Maps', 'Service Management']
+      features: ['Real-time Chat System', 'Bayesian Ranking Algorithm', 'Interactive Maps & Distance Tracking', 'Complete Service Management']
     },
     {
       id: 2,
-      title: 'Handyman Website (UI Focus)',
-      description: 'A beautifully designed handyman service website showcasing professional UI/UX implementation. Clean, modern interface with smooth animations and perfect attention to detail in every component.',
-      image: '/taggers.png',
-      techStack: ['React', 'CSS3', 'JavaScript', 'Responsive Design'],
-      liveLink: 'https://handyman-website-iota.vercel.app/',
-      githubLink: 'https://github.com/Sneha-Neupanee/HandymanWebsite',
-      deployed: 'frontend',
-      features: ['Professional UI/UX', 'Smooth Animations', 'Pixel-Perfect Design', 'Fully Responsive']
-    },
-    {
-      id: 3,
       title: 'SmartSales AI Assistant',
-      description: 'An AI-powered sales analytics dashboard with intelligent insights, ML-based predictions, and natural language queries. Built with React frontend and Python FastAPI backend featuring OpenAI integration.',
-      image: '/smartest-assistance.png',
-      techStack: ['React', 'Python', 'FastAPI', 'AI/ML', 'OpenAI API', 'TensorFlow'],
+      description: 'An intelligent sales analytics platform powered by AI and Machine Learning. Features predictive analytics using TensorFlow, natural language query processing, OpenAI-powered insights, and real-time dashboard analytics. Built with React frontend and Python FastAPI backend with ML models for sales forecasting and trend analysis.',
+      image: '/smart.png',
+      techStack: ['React', 'Python', 'FastAPI', 'Machine Learning', 'TensorFlow', 'OpenAI API', 'Pandas'],
       liveLink: 'https://smart-sales-with-ai-assistant.vercel.app/',
       githubLink: 'https://github.com/Sneha-Neupanee/SmartSales-with-AI-Assistant',
       deployed: 'frontend',
-      features: ['AI Insights', 'Sales Predictions', 'Natural Queries', 'Analytics Dashboard']
+      features: ['AI-Powered Insights', 'ML Sales Predictions', 'Natural Language Queries', 'Real-time Analytics Dashboard']
+    },
+    {
+      id: 3,
+      title: 'Professional Service Platform',
+      description: 'A stunning, pixel-perfect service platform showcasing exceptional UI/UX design principles. Features smooth animations, responsive layouts across all devices, modern glassmorphism effects, and meticulous attention to detail in every component. Demonstrates mastery of professional frontend development and design aesthetics.',
+      image: '/tackles.png',
+      techStack: ['React', 'CSS3', 'JavaScript', 'Responsive Design', 'Modern UI/UX'],
+      liveLink: 'https://handyman-website-iota.vercel.app/',
+      githubLink: 'https://github.com/Sneha-Neupanee/HandymanWebsite',
+      deployed: 'frontend',
+      features: ['Professional UI/UX Design', 'Smooth Animations & Transitions', 'Pixel-Perfect Implementation', 'Fully Responsive Design']
     }
   ];
 
@@ -44,8 +45,8 @@ const Projects = () => {
       <div className="projects-container">
         <h1 className="section-title">My Projects</h1>
         <p className="projects-intro">
-          Here are some of my favorite projects I've built. Each one represents a unique challenge 
-          and learning experience. Click the buttons to explore them! 🚀
+          Here are some of my standout projects showcasing full-stack development, AI/ML integration, 
+          and professional UI/UX design. Each project demonstrates different aspects of my technical expertise.
         </p>
 
         <div className="projects-grid">
@@ -86,22 +87,12 @@ const Projects = () => {
                 </div>
 
                 <div className="project-links">
-                  <a 
-                    href={project.liveLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="custom-btn btn-primary"
-                  >
+                  <Button href={project.liveLink} variant="primary">
                     🚀 Live Demo
-                  </a>
-                  <a 
-                    href={project.githubLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="custom-btn btn-secondary"
-                  >
-                    💻 GitHub
-                  </a>
+                  </Button>
+                  <Button href={project.githubLink} variant="secondary">
+                    💻 GitHub Repo
+                  </Button>
                 </div>
               </div>
             </Card>
@@ -111,15 +102,10 @@ const Projects = () => {
         <div className="more-projects">
           <Card className="github-cta">
             <h3>Want to see more?</h3>
-            <p>Check out my GitHub for more projects and contributions!</p>
-            <a 
-              href="https://github.com/Sneha-Neupanee" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="custom-btn btn-primary"
-            >
+            <p>Check out my GitHub for more projects, contributions, and code samples!</p>
+            <Button href="https://github.com/Sneha-Neupanee" variant="primary">
               Visit My GitHub
-            </a>
+            </Button>
           </Card>
         </div>
       </div>

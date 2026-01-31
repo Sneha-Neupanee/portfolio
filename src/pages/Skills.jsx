@@ -9,12 +9,13 @@ const Skills = () => {
       icon: '🎨',
       skills: [
         { name: 'React', level: 90 },
-        { name: 'JavaScript', level: 85 },
+        { name: 'JavaScript', level: 88 },
         { name: 'HTML5', level: 95 },
-        { name: 'CSS3', level: 90 },
+        { name: 'CSS3', level: 92 },
         { name: 'Tailwind CSS', level: 85 },
         { name: 'Bootstrap', level: 80 },
-        { name: 'UI/UX Design', level: 88 }
+        { name: 'UI/UX Design', level: 88 },
+        { name: 'Responsive Design', level: 92 }
       ]
     },
     {
@@ -22,27 +23,29 @@ const Skills = () => {
       icon: '⚙️',
       skills: [
         { name: 'Node.js', level: 85 },
-        { name: 'Express', level: 80 },
-        { name: 'Python', level: 85 },
+        { name: 'Express', level: 82 },
+        { name: 'Python', level: 88 },
         { name: 'Django', level: 75 },
-        { name: 'FastAPI', level: 80 },
-        { name: 'MongoDB', level: 75 },
-        { name: 'PostgreSQL', level: 70 },
-        { name: 'REST APIs', level: 85 },
-        { name: 'JWT Auth', level: 80 }
+        { name: 'FastAPI', level: 82 },
+        { name: 'MongoDB', level: 80 },
+        { name: 'PostgreSQL', level: 72 },
+        { name: 'REST APIs', level: 88 },
+        { name: 'Socket.IO', level: 80 },
+        { name: 'JWT Auth', level: 85 }
       ]
     },
     {
-      category: 'Tools & Others',
-      icon: '🛠️',
+      category: 'AI/ML & Tools',
+      icon: '🤖',
       skills: [
-        { name: 'Git & GitHub', level: 90 },
+        { name: 'Machine Learning', level: 78 },
+        { name: 'TensorFlow', level: 75 },
+        { name: 'OpenAI API', level: 82 },
+        { name: 'Data Analysis', level: 80 },
+        { name: 'Git & GitHub', level: 92 },
         { name: 'VS Code', level: 95 },
         { name: 'Postman', level: 85 },
-        { name: 'npm/yarn', level: 85 },
-        { name: 'Figma', level: 75 },
-        { name: 'Socket.IO', level: 80 },
-        { name: 'Responsive Design', level: 90 }
+        { name: 'Figma', level: 78 }
       ]
     }
   ];
@@ -63,8 +66,8 @@ const Skills = () => {
       <div className="skills-container">
         <h1 className="section-title">My Skills</h1>
         <p className="skills-intro">
-          These are the technologies and tools I work with to bring ideas to life. 
-          Always learning, always growing! 🚀
+          A comprehensive showcase of technologies and tools I've mastered to build exceptional web applications. 
+          Constantly expanding my expertise!
         </p>
 
         <div className="skills-categories">
@@ -122,7 +125,9 @@ const Skills = () => {
               <span className="learning-badge">TypeScript</span>
               <span className="learning-badge">Next.js</span>
               <span className="learning-badge">Docker</span>
+              <span className="learning-badge">DevOps</span>
               <span className="learning-badge">GraphQL</span>
+              <span className="learning-badge">AWS</span>
             </div>
           </Card>
         </div>

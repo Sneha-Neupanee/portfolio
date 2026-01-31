@@ -7,9 +7,9 @@ const Experience = () => {
     {
       id: 1,
       position: 'Software Engineering Intern',
-      company: 'Strio Consulting',
+      company: 'SRIYOG Consulting',
       duration: 'June 2023 - August 2023',
-      location: 'Remote',
+      type: 'Internship',
       description: 'Worked on developing and maintaining web applications, collaborating with cross-functional teams to deliver high-quality software solutions.',
       responsibilities: [
         'Developed responsive web applications using React and modern JavaScript',
@@ -20,21 +20,38 @@ const Experience = () => {
         'Wrote clean, maintainable, and well-documented code'
       ],
       technologies: ['React', 'Node.js', 'JavaScript', 'Git', 'REST APIs', 'Agile']
+    },
+    {
+      id: 2,
+      position: 'Freelance Web Developer',
+      company: 'Self-Employed',
+      duration: '2022 - Present',
+      type: 'Freelance',
+      description: 'Creating custom web solutions for clients, from concept to deployment. Specialized in full-stack development and modern UI/UX design.',
+      responsibilities: [
+        'Built custom websites and web applications for various clients',
+        'Provided end-to-end solutions from design to deployment',
+        'Implemented responsive designs and modern UI/UX principles',
+        'Integrated APIs and third-party services',
+        'Delivered projects on time with excellent client satisfaction',
+        'Maintained and updated existing client websites'
+      ],
+      technologies: ['React', 'Node.js', 'Python', 'MongoDB', 'UI/UX Design', 'Deployment']
     }
   ];
 
   const education = [
     {
       id: 1,
-      degree: 'Bachelor of Science in Computer Science',
-      institution: 'Your University Name',
+      degree: 'Bachelor in Computer Science and Information Technology',
+      institution: 'Tribhuvan University',
       duration: '2020 - 2024',
-      description: 'Focused on software engineering, web development, and data structures.',
+      description: 'Focused on software engineering, web development, algorithms, and data structures with hands-on projects.',
       achievements: [
-        'Maintained high GPA throughout the program',
-        'Completed multiple web development projects',
+        'Maintained strong academic performance throughout the program',
+        'Completed multiple full-stack web development projects',
         'Participated in hackathons and coding competitions',
-        'Active member of coding clubs'
+        'Active member of university coding clubs and tech communities'
       ]
     }
   ];
@@ -42,7 +59,7 @@ const Experience = () => {
   const certifications = [
     { name: 'Full Stack Web Development', provider: 'Online Platform', year: '2023' },
     { name: 'React - The Complete Guide', provider: 'Udemy', year: '2023' },
-    { name: 'Node.js Backend Development', provider: 'Online Platform', year: '2022' }
+    { name: 'Data Science & Machine Learning', provider: 'Coursera', year: '2023' }
   ];
 
   return (
@@ -66,7 +83,7 @@ const Experience = () => {
                   </div>
                   <div className="experience-meta">
                     <span className="duration">{job.duration}</span>
-                    <span className="location">{job.location}</span>
+                    <span className="job-type">{job.type}</span>
                   </div>
                 </div>
 
@@ -151,10 +168,10 @@ const Experience = () => {
 
         <div className="achievements-section">
           <Card className="achievements-banner">
-            <h3>✨ Quick Stats</h3>
+            <h3>Quick Stats</h3>
             <div className="stats-grid">
               <div className="stat-item">
-                <span className="stat-number">3+</span>
+                <span className="stat-number">10+</span>
                 <span className="stat-label">Projects Completed</span>
               </div>
               <div className="stat-item">

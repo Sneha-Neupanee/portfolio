@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../components/Button';
+import ParticlePlayground from '../components/ParticlePlayground';
 import '../styles/Home.css';
 
 const Home = () => {
   const [text, setText] = useState('');
   const fullText = "Full Stack Developer & Creative Coder";
   const [index, setIndex] = useState(0);
+  
+  const [gameTreatText, setGameTreatText] = useState('');
+  const gameTreatFullText = "A little game treat";
+  const [gameTreatIndex, setGameTreatIndex] = useState(0);
 
   useEffect(() => {
     if (index < fullText.length) {
@@ -15,10 +19,20 @@ const Home = () => {
         setIndex(index + 1);
       }, 100);
       
-      // IMPORTANT: Cleanup timeout
       return () => clearTimeout(timeout);
     }
   }, [index, fullText]);
+
+  useEffect(() => {
+    if (gameTreatIndex < gameTreatFullText.length) {
+      const timeout = setTimeout(() => {
+        setGameTreatText(prev => prev + gameTreatFullText[gameTreatIndex]);
+        setGameTreatIndex(gameTreatIndex + 1);
+      }, 80);
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [gameTreatIndex, gameTreatFullText]);
 
   return (
     <div className="home-page">
@@ -61,6 +75,16 @@ const Home = () => {
             <div className="image-backdrop"></div>
           </div>
         </div>
+      </div>
+
+      <div className="game-section">
+        <h2 className="game-treat-heading">
+          {gameTreatText}<span className="cursor-blink-game">|</span>
+        </h2>
+        <ParticlePlayground />
+        <p className="game-description">
+          Interactive physics-based particle system built with React and HTML5 Canvas.
+        </p>
       </div>
 
       <div className="scroll-indicator">
