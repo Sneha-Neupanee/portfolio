@@ -1,0 +1,21 @@
+.custom-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 182, 193, 0.3);
+  }
+  
+  .dark-mode .custom-card {
+    background: #2d2d2d;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .dark-mode .card-hover:hover {
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
+  }

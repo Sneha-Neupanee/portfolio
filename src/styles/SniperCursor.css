@@ -1,0 +1,55 @@
+.sniper-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sniper-cursor.visible {
+    opacity: 0.6;
+  }
+  
+  .crosshair-horizontal,
+  .crosshair-vertical {
+    position: absolute;
+    background: #FF69B4;
+  }
+  
+  .crosshair-horizontal {
+    width: 40px;
+    height: 2px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .crosshair-vertical {
+    width: 2px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .center-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #FF69B4;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #FF69B4;
+  }
+  
+  /* Hide default cursor on sniper buttons */
+  .sniper-target {
+    cursor: none !important;
+  }
+  
+  .sniper-target:hover .sniper-cursor {
+    opacity: 1;
+  }

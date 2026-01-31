@@ -1,0 +1,226 @@
+.projects-page {
+    padding: 2rem;
+    animation: fadeIn 0.6s ease;
+  }
+  
+  .projects-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .projects-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+  
+  .dark-mode .projects-intro {
+    color: #ccc;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+  
+  .project-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .project-card:hover .project-image img {
+    transform: scale(1.1);
+  }
+  
+  .project-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .deployment-badge {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #FF69B4;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .project-title {
+    font-size: 1.8rem;
+    color: #FF69B4;
+    margin-bottom: 1rem;
+  }
+  
+  .project-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+  
+  .dark-mode .project-description {
+    color: #ccc;
+  }
+  
+  .project-features {
+    margin-bottom: 1rem;
+  }
+  
+  .project-features h4 {
+    font-size: 1rem;
+    color: #FF69B4;
+    margin-bottom: 0.5rem;
+  }
+  
+  .project-features ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .project-features li {
+    font-size: 0.9rem;
+    color: #666;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  
+  .dark-mode .project-features li {
+    color: #ccc;
+  }
+  
+  .project-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #FF69B4;
+    font-weight: bold;
+  }
+  
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tech-badge {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 105, 180, 0.2));
+    color: #FF69B4;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+  }
+  
+  .dark-mode .tech-badge {
+    background: rgba(255, 105, 180, 0.1);
+    border-color: rgba(255, 105, 180, 0.4);
+  }
+  
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .project-links a {
+    text-decoration: none;
+  }
+  
+  .more-projects {
+    margin-top: 3rem;
+    animation: fadeInUp 1s ease;
+  }
+  
+  .github-cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.1));
+  }
+  
+  .github-cta h3 {
+    font-size: 2rem;
+    color: #FF69B4;
+    margin-bottom: 1rem;
+  }
+  
+  .github-cta p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dark-mode .github-cta p {
+    color: #ccc;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .project-features ul {
+      grid-template-columns: 1fr;
+    }
+  
+    .project-links {
+      flex-direction: column;
+    }
+  
+    .project-links a {
+      width: 100%;
+    }
+  
+    .project-links button {
+      width: 100%;
+    }
+  }

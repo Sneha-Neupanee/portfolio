@@ -1,0 +1,219 @@
+.about-page {
+    padding: 2rem;
+    animation: fadeIn 0.6s ease;
+  }
+  
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .about-intro {
+    animation: fadeInUp 0.8s ease;
+  }
+  
+  .intro-with-image {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .about-image {
+    flex-shrink: 0;
+  }
+  
+  .about-image img {
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+  }
+  
+  .intro-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #FF69B4;
+  }
+  
+  .intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  .dark-mode .intro-text p {
+    color: #ccc;
+  }
+  
+  .subsection-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hobbies-section {
+    animation: fadeInUp 1s ease;
+  }
+  
+  .hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .hobby-card {
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .hobby-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hobby-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #FF69B4;
+  }
+  
+  .hobby-card p {
+    color: #666;
+    font-size: 0.95rem;
+  }
+  
+  .dark-mode .hobby-card p {
+    color: #ccc;
+  }
+  
+  .fun-facts-section {
+    animation: fadeInUp 1.2s ease;
+  }
+  
+  .fun-facts-card {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.1));
+  }
+  
+  .facts-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .fact-item {
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #666;
+  }
+  
+  .dark-mode .fact-item {
+    color: #ccc;
+    border-bottom-color: rgba(255, 105, 180, 0.3);
+  }
+  
+  .fact-item:last-child {
+    border-bottom: none;
+  }
+  
+  .fact-bullet {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  
+  .journey-section {
+    animation: fadeInUp 1.4s ease;
+  }
+  
+  .journey-card {
+    padding: 2rem;
+  }
+  
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #FFB6C1, #FF69B4);
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .timeline-dot {
+    position: absolute;
+    left: -2.6rem;
+    top: 0.3rem;
+    width: 15px;
+    height: 15px;
+    background: #FF69B4;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.2);
+  }
+  
+  .timeline-content h3 {
+    font-size: 1.3rem;
+    color: #FF69B4;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-content p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .dark-mode .timeline-content p {
+    color: #ccc;
+  }
+  
+  @media (max-width: 768px) {
+    .intro-with-image {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .about-image img {
+      width: 200px;
+      height: 200px;
+    }
+  
+    .hobbies-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+  
+    .subsection-title {
+      font-size: 1.5rem;
+    }
+  
+    .timeline {
+      padding-left: 1.5rem;
+    }
+  }

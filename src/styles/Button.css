@@ -1,0 +1,84 @@
+.custom-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid #FF69B4;
+    color: #FF69B4;
+  }
+  
+  .btn-secondary:hover {
+    background: #FF69B4;
+    color: white;
+  }
+  
+  .sniper-target {
+    cursor: none !important;
+  }
+  
+  .custom-btn.shot {
+    animation: recoil 0.3s ease;
+  }
+  
+  @keyframes recoil {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+  
+  .hit-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    animation: explode 0.5s ease forwards;
+    pointer-events: none;
+  }
+  
+  @keyframes explode {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(2);
+    }
+  }
+  
+  .dark-mode .btn-primary {
+    background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+  }
+  
+  .dark-mode .btn-secondary {
+    border-color: #FFB6C1;
+    color: #FFB6C1;
+  }
+  
+  .dark-mode .btn-secondary:hover {
+    background: #FFB6C1;
+    color: #2C2C2C;
+  }

@@ -1,0 +1,253 @@
+.home-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+  
+  .particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .particle {
+    position: absolute;
+    background: #FFB6C1;
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+    opacity: 0.3;
+  }
+  
+  .particle:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  .particle:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    left: 80%;
+    animation-delay: 2s;
+  }
+  
+  .particle:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    top: 80%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+  
+  .particle:nth-child(4) {
+    width: 50px;
+    height: 50px;
+    top: 30%;
+    left: 70%;
+    animation-delay: 1s;
+  }
+  
+  .particle:nth-child(5) {
+    width: 70px;
+    height: 70px;
+    top: 50%;
+    left: 50%;
+    animation-delay: 3s;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-30px) rotate(180deg);
+    }
+  }
+  
+  .home-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .hero-text {
+    animation: fadeInUp 1s ease;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .name-highlight {
+    background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    min-height: 40px;
+  }
+  
+  .dark-mode .hero-subtitle {
+    color: #ccc;
+  }
+  
+  .cursor-blink {
+    animation: blink 0.7s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  .hero-description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .dark-mode .hero-description {
+    color: #aaa;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.5s ease;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #FFB6C1;
+    box-shadow: 0 10px 40px rgba(255, 105, 180, 0.3);
+    position: relative;
+    z-index: 2;
+    animation: float 3s infinite ease-in-out;
+  }
+  
+  .image-backdrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+    border-radius: 50%;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+    opacity: 0.5;
+  }
+  
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+    animation: bounce 2s infinite;
+  }
+  
+  .dark-mode .scroll-indicator {
+    color: #ccc;
+  }
+  
+  .arrow-down {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid #FF69B4;
+    border-bottom: 2px solid #FF69B4;
+    transform: rotate(45deg);
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(10px);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @media (max-width: 968px) {
+    .home-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  
+    .hero-title {
+      font-size: 2.5rem;
+    }
+  
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+  
+    .cta-buttons {
+      justify-content: center;
+    }
+  
+    .image-wrapper {
+      width: 300px;
+      height: 300px;
+    }
+  }
