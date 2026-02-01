@@ -42,6 +42,19 @@ const Home = () => {
         <div className="particle"></div>
         <div className="particle"></div>
         <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
       </div>
 
       <div className="home-content">
@@ -83,7 +96,7 @@ const Home = () => {
         </h2>
         <ParticlePlayground />
         <p className="game-description">
-          Interactive physics-based particle system built with React and HTML5 Canvas.
+          Angry Birds-style physics game. Drag and launch birds to destroy the structures!
         </p>
       </div>
 
