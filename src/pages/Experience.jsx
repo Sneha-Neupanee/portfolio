@@ -6,10 +6,10 @@ const Experience = () => {
   const workExperience = [
     {
       id: 1,
-      position: 'Software Engineering Intern',
+      position: 'Software Engineering ',
       company: 'SRIYOG Consulting',
-      duration: 'June 2023 - August 2023',
-      type: 'Internship',
+      duration: 'June 2023 - Present',
+      type: 'Job',
       description: 'Worked on developing and maintaining web applications, collaborating with cross-functional teams to deliver high-quality software solutions.',
       responsibilities: [
         'Developed responsive web applications using React and modern JavaScript',
