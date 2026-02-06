@@ -8,7 +8,7 @@ const Experience = () => {
       id: 1,
       position: 'Software Engineering ',
       company: 'SRIYOG Consulting',
-      duration: 'June 2023 - Present',
+      duration: 'June 2024 - Present',
       type: 'Job',
       description: 'Worked on developing and maintaining web applications, collaborating with cross-functional teams to deliver high-quality software solutions.',
       responsibilities: [
