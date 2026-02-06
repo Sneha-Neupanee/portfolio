@@ -171,11 +171,11 @@ const Experience = () => {
             <h3>Quick Stats</h3>
             <div className="stats-grid">
               <div className="stat-item">
-                <span className="stat-number">10+</span>
+                <span className="stat-number">30+</span>
                 <span className="stat-label">Projects Completed</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number">10+</span>
+                <span className="stat-number">20+</span>
                 <span className="stat-label">Technologies Mastered</span>
               </div>
               <div className="stat-item">
