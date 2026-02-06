@@ -45,7 +45,7 @@ const Experience = () => {
       id: 1,
       degree: 'Bachelor in Computer Science and Information Technology',
       institution: 'Tribhuvan University',
-      duration: '2020 - 2024',
+      duration: '2022 - 2026',
       description: 'Focused on software engineering, web development, algorithms, and data structures with hands-on projects.',
       achievements: [
         'Maintained strong academic performance throughout the program',
