@@ -7,10 +7,7 @@ const Home = () => {
   const [text, setText] = useState('');
   const fullText = "Full Stack Developer & Creative Coder";
   const [index, setIndex] = useState(0);
-  
-  const [gameTreatText, setGameTreatText] = useState('');
-  const gameTreatFullText = "A little game treat";
-  const [gameTreatIndex, setGameTreatIndex] = useState(0);
+
 
   useEffect(() => {
     if (index < fullText.length) {
@@ -18,21 +15,12 @@ const Home = () => {
         setText(prev => prev + fullText[index]);
         setIndex(index + 1);
       }, 100);
-      
+
       return () => clearTimeout(timeout);
     }
   }, [index, fullText]);
 
-  useEffect(() => {
-    if (gameTreatIndex < gameTreatFullText.length) {
-      const timeout = setTimeout(() => {
-        setGameTreatText(prev => prev + gameTreatFullText[gameTreatIndex]);
-        setGameTreatIndex(gameTreatIndex + 1);
-      }, 80);
-      
-      return () => clearTimeout(timeout);
-    }
-  }, [gameTreatIndex, gameTreatFullText]);
+
 
   return (
     <div className="home-page">
@@ -64,10 +52,10 @@ const Home = () => {
           </h1>
           <p className="hero-subtitle">{text}<span className="cursor-blink">|</span></p>
           <p className="hero-description">
-            Crafting beautiful, functional web experiences with passion and creativity. 
+            Crafting beautiful, functional web experiences with passion and creativity.
             From front-end magic to back-end logic, I bring ideas to life.
           </p>
-          
+
           <div className="cta-buttons">
             <Link to="/projects">
               <button className="custom-btn btn-primary">
@@ -91,13 +79,7 @@ const Home = () => {
       </div>
 
       <div className="game-section">
-        <h2 className="game-treat-heading">
-          {gameTreatText}<span className="cursor-blink-game">|</span>
-        </h2>
         <ParticlePlayground />
-        <p className="game-description">
-          Angry Birds-style physics game. Drag and launch birds to destroy the structures!
-        </p>
       </div>
 
       <div className="scroll-indicator">

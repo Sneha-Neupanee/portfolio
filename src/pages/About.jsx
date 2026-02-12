@@ -34,20 +34,13 @@ const About = () => {
                 <div className="intro-text">
                   <h2>Hey there!</h2>
                   <p>
-                    I'm Sneha Neupane, a passionate Full Stack Developer who loves turning ideas into 
-                    reality through code. My journey in tech started with curiosity and evolved into 
-                    a full-blown passion for creating beautiful, functional web applications.
+                    I am Sneha Neupane, a Full Stack Developer specializing in React, Node.js, and Python.
+                    I build scalable, high-performance web applications with a focus on clean code and exceptional user experience.
                   </p>
                   <p>
-                    When I'm not coding, you'll find me at the gym, gaming, painting, or writing poetry. 
-                    I believe in living a balanced life where creativity meets logic, and strength meets 
-                    code. My goal? To build applications that not only work flawlessly but also bring 
-                    joy to users.
-                  </p>
-                  <p>
-                    I'm a problem solver at heart, constantly learning and experimenting with new 
-                    technologies. Whether it's front-end magic with React or back-end wizardry with 
-                    Node.js and Python, I'm always up for a challenge!
+                    With a strong foundation in modern web technologies and a problem-solving mindset,
+                    I turn complex requirements into seamless digital solutions.
+                    Ready to bring your ideas to life? Let's build something amazing together.
                   </p>
                 </div>
               </div>
