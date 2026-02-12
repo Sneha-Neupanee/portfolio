@@ -1,14 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/ParticlePlayground.css';
 
 const ParticlePlayground = () => {
   const [visible, setVisible] = useState(false);
+  const [typedText, setTypedText] = useState('');
+  const fullText = "Projects I Have Worked On";
+  const [typingStarted, setTypingStarted] = useState(false);
+  const navigate = useNavigate();
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    // Trigger animation after mount
-    const timer = setTimeout(() => setVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !typingStarted) {
+          setTypingStarted(true);
+          setVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [typingStarted]);
+
+  useEffect(() => {
+    if (typingStarted && typedText.length < fullText.length) {
+      const timeout = setTimeout(() => {
+        setTypedText(fullText.slice(0, typedText.length + 1));
+      }, 50); // Adjust speed here for smoothness
+      return () => clearTimeout(timeout);
+    }
+  }, [typingStarted, typedText, fullText]);
 
   const projects = [
     {
@@ -35,9 +66,12 @@ const ParticlePlayground = () => {
   ];
 
   return (
-    <div className="project-showcase-container">
+    <div className="project-showcase-container" ref={sectionRef}>
       <div className="project-header">
-        <h3>Projects I have worked on</h3>
+        <h3 className="typing-title">
+          {typedText}
+          <span className="cursor-blink">|</span>
+        </h3>
       </div>
 
       <div className="project-cards-wrapper">
@@ -45,20 +79,27 @@ const ParticlePlayground = () => {
           <div
             key={project.id}
             className={`project-card ${visible ? 'visible' : ''}`}
-            style={{ transitionDelay: `${index * 200}ms` }}
+            style={{ transitionDelay: `${index * 150}ms` }}
           >
             <div className="card-image-container">
               <img src={project.image} alt={project.name} className="project-image" />
             </div>
             <div className="card-info">
               <h4>{project.name}</h4>
-              <div className="card-line"></div>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="view-project-btn">
-                View Project
-              </a>
+              <div className="card-buttons">
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="view-project-btn">
+                  View Project
+                </a>
+              </div>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="skills-button-container">
+        <button className="view-skills-btn" onClick={() => navigate('/skills')}>
+          View My Skills
+        </button>
       </div>
     </div>
   );

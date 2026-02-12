@@ -78,14 +78,9 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="game-section">
-        <ParticlePlayground />
-      </div>
+      <ParticlePlayground />
 
-      <div className="scroll-indicator">
-        <span>Scroll Down</span>
-        <div className="arrow-down"></div>
-      </div>
+
     </div>
   );
 };
