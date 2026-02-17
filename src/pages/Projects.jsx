@@ -33,8 +33,8 @@ const Projects = () => {
       description: 'A stunning, pixel-perfect service platform showcasing exceptional UI/UX design principles. Features smooth animations, responsive layouts across all devices, modern glassmorphism effects, and meticulous attention to detail in every component. Demonstrates mastery of professional frontend development and design aesthetics.',
       image: '/tackles.png',
       techStack: ['React', 'CSS3', 'JavaScript', 'Responsive Design', 'Modern UI/UX'],
-      liveLink: 'https://handyman-website-iota.vercel.app/',
-      githubLink: 'https://github.com/Sneha-Neupanee/HandymanWebsite',
+      liveLink: 'https://myhandymanfolder.vercel.app/',
+      githubLink: 'https://github.com/Sneha-Neupanee/myhandymanfolder',
       deployed: 'frontend',
       features: ['Professional UI/UX Design', 'Smooth Animations & Transitions', 'Pixel-Perfect Implementation', 'Fully Responsive Design']
     }
@@ -45,7 +45,7 @@ const Projects = () => {
       <div className="projects-container">
         <h1 className="section-title">My Projects</h1>
         <p className="projects-intro">
-          Here are some of my standout projects showcasing full-stack development, AI/ML integration, 
+          Here are some of my standout projects showcasing full-stack development, AI/ML integration,
           and professional UI/UX design. Each project demonstrates different aspects of my technical expertise.
         </p>
 
@@ -53,7 +53,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card key={project.id} className="project-card" style={{ animationDelay: `${index * 0.2}s` }}>
               <div className="project-image">
-                <img 
+                <img
                   src={project.image}
                   alt={project.title}
                   onError={(e) => {

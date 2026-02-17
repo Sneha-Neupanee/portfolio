@@ -60,7 +60,7 @@ const ParticlePlayground = () => {
       id: 3,
       name: "TACKLES",
       image: "/handyman.png",
-      link: "https://handyman-website-iota.vercel.app/",
+      link: "https://myhandymanfolder.vercel.app/",
       description: "Service booking platform for home maintenance."
     }
   ];
@@ -97,6 +97,9 @@ const ParticlePlayground = () => {
       </div>
 
       <div className="skills-button-container">
+        <button className="view-skills-btn" onClick={() => navigate('/projects')}>
+          View More Projects
+        </button>
         <button className="view-skills-btn" onClick={() => navigate('/skills')}>
           View My Skills
         </button>
