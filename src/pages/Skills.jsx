@@ -9,6 +9,7 @@ const Skills = () => {
       icon: '🎨',
       skills: [
         { name: 'React', level: 90 },
+        { name: 'Next.js', level: 85 },
         { name: 'JavaScript', level: 88 },
         { name: 'HTML5', level: 95 },
         { name: 'CSS3', level: 92 },
@@ -66,7 +67,7 @@ const Skills = () => {
       <div className="skills-container">
         <h1 className="section-title">My Skills</h1>
         <p className="skills-intro">
-          A comprehensive showcase of technologies and tools I've mastered to build exceptional web applications. 
+          A comprehensive showcase of technologies and tools I've mastered to build exceptional web applications.
           Constantly expanding my expertise!
         </p>
 
@@ -77,7 +78,7 @@ const Skills = () => {
                 <span className="category-icon">{category.icon}</span>
                 <h2 className="category-title">{category.category}</h2>
               </div>
-              
+
               <div className="skills-list">
                 {category.skills.map((skill, idx) => (
                   <div key={idx} className="skill-item">
@@ -86,9 +87,9 @@ const Skills = () => {
                       <span className="skill-percentage">{skill.level}%</span>
                     </div>
                     <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{ 
+                      <div
+                        className="skill-progress"
+                        style={{
                           width: `${skill.level}%`,
                           animationDelay: `${(index * 0.2) + (idx * 0.1)}s`
                         }}
@@ -106,8 +107,8 @@ const Skills = () => {
           <Card className="additional-skills-card">
             <div className="additional-skills-grid">
               {additionalSkills.map((skill, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="additional-skill-badge"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -123,7 +124,6 @@ const Skills = () => {
             <h3>🌱 Currently Learning</h3>
             <div className="learning-items">
               <span className="learning-badge">TypeScript</span>
-              <span className="learning-badge">Next.js</span>
               <span className="learning-badge">Docker</span>
               <span className="learning-badge">DevOps</span>
               <span className="learning-badge">GraphQL</span>
