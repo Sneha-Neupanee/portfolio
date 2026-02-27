@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Footer.css';
+import '../styles/Footer.css';
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
