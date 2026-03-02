@@ -44,7 +44,7 @@ const Intro3D = ({ onFinish }) => {
           id: id++,
           left: baseLeft + (Math.random() - 0.5) * (100 / cols) * 0.4,
           top: baseTop + (Math.random() - 0.5) * (100 / rows) * 0.4,
-          size: 44 + Math.random() * 18,
+          size: 58 + Math.random() * 22,
           delay: Math.random() * 5,
           duration: 4 + Math.random() * 3,
           opacity: 0.15 + Math.random() * 0.1,
