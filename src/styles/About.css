@@ -153,13 +153,18 @@
 
 .timeline {
   position: relative;
+  /* dot is 15px wide, left: -2.6rem → dot center = -2.6rem + 7.5px        */
+  /* set padding-left so content clears the dot + a small gap               */
   padding-left: 2rem;
 }
 
+/* FIX: align line center to dot center                                      */
+/* dot left: -2.6rem, dot width: 15px → dot center at (-2.6rem + 7.5px)    */
+/* line width: 3px → line left = dot-center - half-line = -2.6rem + 6px    */
 .timeline::before {
   content: '';
   position: absolute;
-  left: 0;
+  left: calc(-2.6rem + 6px);
   top: 0;
   bottom: 0;
   width: 3px;

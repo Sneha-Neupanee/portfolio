@@ -90,8 +90,9 @@ const Skills = () => {
                       <div
                         className="skill-progress"
                         style={{
-                          width: `${skill.level}%`,
+                          '--skill-width': `${skill.level}%`,  // FIX: pass as CSS variable so @keyframes growBar can use it
                           animationDelay: `${(index * 0.2) + (idx * 0.1)}s`
+                          // Removed: width inline style — the animation now controls width via --skill-width
                         }}
                       ></div>
                     </div>
