@@ -21,9 +21,9 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     setFormStatus('success');
-    
+
     setFormData({
       name: '',
       email: '',
@@ -68,7 +68,7 @@ const Contact = () => {
       <div className="contact-container">
         <h1 className="section-title">Get In Touch</h1>
         <p className="contact-intro">
-          Have a project in mind or want to collaborate? Let's create something amazing together! 
+          Have a project in mind or want to collaborate? Let's create something amazing together!
           I'm always excited to discuss new opportunities and innovative ideas.
         </p>
 
@@ -147,8 +147,8 @@ const Contact = () => {
               <h2>Contact Information</h2>
               <div className="contact-info-list">
                 {contactInfo.map((info, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="contact-info-item"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
@@ -172,17 +172,17 @@ const Contact = () => {
               <h2>Let's Connect!</h2>
               <p>Follow me on social media for updates and projects!</p>
               <div className="social-buttons">
-                <a 
-                  href="https://github.com/Sneha-Neupanee" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/Sneha-Neupanee"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="custom-btn btn-secondary"
                 >
                   GitHub 💻
                 </a>
-                <a 
-                  href="https://www.linkedin.com/in/sneha-neupane-93b065269/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/sneha-neupane-93b065269/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="custom-btn btn-secondary"
                 >

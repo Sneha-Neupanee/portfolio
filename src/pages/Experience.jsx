@@ -72,7 +72,7 @@ const Experience = () => {
             <span className="section-icon">💼</span>
             Work Experience
           </h2>
-          
+
           <div className="experience-timeline">
             {workExperience.map((job, index) => (
               <Card key={job.id} className="experience-card" style={{ animationDelay: `${index * 0.2}s` }}>
@@ -116,7 +116,7 @@ const Experience = () => {
             <span className="section-icon">🎓</span>
             Education
           </h2>
-          
+
           <div className="education-timeline">
             {education.map((edu, index) => (
               <Card key={edu.id} className="education-card" style={{ animationDelay: `${index * 0.2}s` }}>
@@ -145,12 +145,12 @@ const Experience = () => {
             <span className="section-icon">📜</span>
             Certifications
           </h2>
-          
+
           <Card className="certifications-card">
             <div className="certifications-grid">
               {certifications.map((cert, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="certification-item"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >

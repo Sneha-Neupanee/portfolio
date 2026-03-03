@@ -30,14 +30,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 105, 180, 0.45),
-    rgba(255, 20, 147, 0.7),
-    rgba(255, 105, 180, 0.45),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 105, 180, 0.45),
+      rgba(255, 20, 147, 0.7),
+      rgba(255, 105, 180, 0.45),
+      transparent);
 }
 
 /* ─── Container ──────────────────────────────────────────────── */
@@ -65,6 +63,18 @@
   flex-direction: column;
 }
 
+.footer__brand-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.footer__brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
 .footer__name {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.5rem;
@@ -80,7 +90,39 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #c9a0b0;
-  margin: 0 0 1.4rem;
+  margin: 0;
+}
+
+/* Hello Kitty in footer brand */
+.footer__kitty {
+  width: 36px;
+  height: 36px;
+  opacity: 0.55;
+  filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.35));
+  animation: footerKittyBob 3s ease-in-out infinite;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer__kitty:hover {
+  opacity: 0.9;
+  transform: scale(1.15) rotate(-8deg);
+}
+
+@keyframes footerKittyBob {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-4px) rotate(3deg);
+  }
+
+  66% {
+    transform: translateY(2px) rotate(-2deg);
+  }
 }
 
 .footer__rule {
@@ -221,6 +263,10 @@
     text-align: center;
   }
 
+  .footer__brand-header {
+    justify-content: center;
+  }
+
   .footer__bio {
     max-width: 100%;
   }
@@ -242,5 +288,10 @@
     flex-direction: column;
     gap: 0.5rem;
     text-align: center;
+  }
+
+  .footer__kitty {
+    width: 28px;
+    height: 28px;
   }
 }

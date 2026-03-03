@@ -1,0 +1,45 @@
+/* ─── Custom Cursor Styles ─── */
+
+/* Only hide default cursor and show custom cursor on devices with a mouse */
+@media (hover: hover) and (pointer: fine) {
+
+    /* Hide the default system cursor globally */
+    * {
+        cursor: none !important;
+    }
+
+    /* Base wrapper for the cursor */
+    .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 32px;
+        pointer-events: none;
+        /* NEVER block clicks */
+        z-index: 99999;
+        /* Stay on top of absolutely everything */
+        will-change: transform;
+        opacity: 1;
+        transition: opacity 0.2s ease;
+    }
+
+    /* The actual image */
+    .custom-cursor-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Remove any default image interactions */
+        user-select: none;
+        -webkit-user-drag: none;
+        /* Slight glow to make it visible on dark/light backgrounds alike */
+        filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
+    }
+}
+
+/* On touch devices, ensure the custom cursor wrapper is completely hidden */
+@media (hover: none) or (pointer: coarse) {
+    .custom-cursor {
+        display: none !important;
+    }
+}

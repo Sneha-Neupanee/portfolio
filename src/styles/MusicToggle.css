@@ -1,0 +1,39 @@
+.music-toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.music-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2C2C2C;
+    border-radius: 999px;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.music-toggle-btn:hover {
+    background: rgba(255, 105, 180, 0.1);
+    transform: scale(1.04);
+}
+
+.music-toggle-btn svg {
+    color: #FF69B4;
+    transition: transform 0.35s ease;
+}
+
+.music-toggle-btn:hover svg {
+    transform: scale(1.1);
+}
+
+.dark-mode .music-toggle-btn {
+    color: #FFFFFF;
+}
+
+.dark-mode .music-toggle-btn svg {
+    color: #FFB6C1;
+}

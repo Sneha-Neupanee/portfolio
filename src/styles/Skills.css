@@ -1,6 +1,7 @@
 .skills-page {
   padding: 2rem;
   animation: fadeIn 0.6s ease;
+  position: relative;
 }
 
 .skills-container {
@@ -107,6 +108,7 @@
   from {
     width: 0;
   }
+
   to {
     width: var(--skill-width);
   }
@@ -217,6 +219,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

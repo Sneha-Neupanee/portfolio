@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Footer.css';
 
 const GithubIcon = () => (
@@ -51,8 +52,18 @@ const Footer = () => {
 
           {/* Brand */}
           <div className="footer__brand">
-            <p className="footer__name">Sneha Neupane</p>
-            <p className="footer__tagline">Developer &amp; Designer</p>
+            <div className="footer__brand-header">
+              <div className="footer__brand-text">
+                <p className="footer__name">Sneha Neupane</p>
+                <p className="footer__tagline">Developer &amp; Designer</p>
+              </div>
+              <img
+                src="/hellokitty.png"
+                alt=""
+                className="footer__kitty"
+                aria-hidden="true"
+              />
+            </div>
             <div className="footer__rule" />
             <p className="footer__bio">
               Crafting thoughtful digital experiences through clean code and considered design.
@@ -65,14 +76,14 @@ const Footer = () => {
             <ul className="footer__nav-list">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className={`footer__nav-link${hoveredLink === link.label ? ' footer__nav-link--hovered' : ''}`}
                     onMouseEnter={() => setHoveredLink(link.label)}
                     onMouseLeave={() => setHoveredLink(null)}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

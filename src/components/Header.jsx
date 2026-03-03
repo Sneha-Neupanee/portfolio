@@ -10,15 +10,16 @@ import {
   Sun,
   Moon,
 } from 'lucide-react';
+import MusicToggle from './MusicToggle';
 import '../styles/Header.css';
 
 const navLinks = [
-  { name: 'Home',       path: '/',           Icon: Home       },
-  { name: 'About',      path: '/about',       Icon: User       },
-  { name: 'Projects',   path: '/projects',    Icon: FolderOpen },
-  { name: 'Skills',     path: '/skills',      Icon: Zap        },
-  { name: 'Experience', path: '/experience',  Icon: Briefcase  },
-  { name: 'Contact',    path: '/contact',     Icon: Mail       },
+  { name: 'Home', path: '/', Icon: Home },
+  { name: 'About', path: '/about', Icon: User },
+  { name: 'Projects', path: '/projects', Icon: FolderOpen },
+  { name: 'Skills', path: '/skills', Icon: Zap },
+  { name: 'Experience', path: '/experience', Icon: Briefcase },
+  { name: 'Contact', path: '/contact', Icon: Mail },
 ];
 
 const Header = ({ darkMode, setDarkMode }) => {
@@ -48,8 +49,9 @@ const Header = ({ darkMode, setDarkMode }) => {
           ))}
         </nav>
 
-        {/* ── Theme toggle ── */}
+        {/* ── Theme & Music toggle ── */}
         <div className="header-actions">
+          <MusicToggle />
           <button
             className="theme-toggle"
             onClick={() => setDarkMode(!darkMode)}
@@ -57,7 +59,7 @@ const Header = ({ darkMode, setDarkMode }) => {
             title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           >
             {darkMode
-              ? <Sun  size={18} strokeWidth={1.75} />
+              ? <Sun size={18} strokeWidth={1.75} />
               : <Moon size={18} strokeWidth={1.75} />
             }
             <span className="theme-label">

@@ -1,0 +1,38 @@
+/* ─── Kitty Accent Background Layer ──────────────────────────── */
+
+.kitty-accent-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.kitty-accent-icon {
+    position: absolute;
+    animation: kittyFloat ease-in-out infinite alternate;
+    filter: grayscale(0.2) brightness(1.1);
+    user-select: none;
+    will-change: transform;
+}
+
+@keyframes kittyFloat {
+    0% {
+        transform: translate(0, 0) rotate(var(--base-rot, 0deg));
+    }
+
+    50% {
+        transform: translate(25px, -15px) rotate(calc(var(--base-rot, 0deg) + 3deg));
+    }
+
+    100% {
+        transform: translate(-25px, 8px) rotate(calc(var(--base-rot, 0deg) - 2deg));
+    }
+}
+
+/* On very small screens, reduce count by hiding some */
+@media (max-width: 480px) {
+    .kitty-accent-icon:nth-child(n+5) {
+        display: none;
+    }
+}

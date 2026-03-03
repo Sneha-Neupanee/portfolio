@@ -1,6 +1,7 @@
 .about-page {
   padding: 2rem;
   animation: fadeIn 0.6s ease;
+  position: relative;
 }
 
 .about-container {

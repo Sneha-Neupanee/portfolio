@@ -10,6 +10,9 @@ import Skills from './pages/Skills';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import Intro3D from './components/Intro3D';
+import FloatingParticles from './components/FloatingParticles';
+import CustomCursor from './components/CustomCursor';
+import ClickEffects from './components/ClickEffects';
 import './App.css';
 
 /* ScrollToTop component: scrolls to top on route change */
@@ -25,7 +28,14 @@ function ScrollToTop() {
 
 function App() {
   // State to control showing the 3D intro
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(() => {
+    return sessionStorage.getItem('introShown') !== 'true';
+  });
+
+  const handleIntroFinish = () => {
+    sessionStorage.setItem('introShown', 'true');
+    setShowIntro(false);
+  };
 
   // Dark mode toggle state
   const [darkMode, setDarkMode] = useState(true);
@@ -39,10 +49,13 @@ function App() {
   // Always render main content; intro overlays on top so home page peeks through
   return (
     <>
-      {showIntro && <Intro3D onFinish={() => setShowIntro(false)} />}
+      <CustomCursor />
+      <ClickEffects />
+      {showIntro && <Intro3D onFinish={handleIntroFinish} />}
       <Router>
         <ScrollToTop />
         <div className={`App ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+          <FloatingParticles />
           {/* Header with dark mode toggle */}
           <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
