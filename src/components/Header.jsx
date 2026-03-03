@@ -51,7 +51,10 @@ const Header = ({ darkMode, setDarkMode }) => {
 
         {/* ── Theme & Music toggle ── */}
         <div className="header-actions">
-          <MusicToggle />
+          <div className="music-toggle-wrapper">
+            <span className="music-label">Music</span>
+            <MusicToggle />
+          </div>
           <button
             className="theme-toggle"
             onClick={() => setDarkMode(!darkMode)}

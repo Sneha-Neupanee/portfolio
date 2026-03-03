@@ -173,6 +173,44 @@
 }
 
 /* ════════════════════════════════════════
+   MUSIC TOGGLE WRAPPER + LABEL
+   ════════════════════════════════════════ */
+.music-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.music-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #2C2C2C;
+  letter-spacing: 0.01em;
+  user-select: none;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.dark-mode .music-label {
+  color: #FFFFFF;
+}
+
+/* Music label — subtler on mobile */
+@media (max-width: 968px) {
+  .music-label {
+    font-size: 0.7rem;
+    font-style: italic;
+    font-weight: 400;
+    color: #FF69B4;
+    letter-spacing: 0.04em;
+  }
+
+  .dark-mode .music-label {
+    color: #FFB6C1;
+  }
+}
+
+/* ════════════════════════════════════════
    MOBILE ROW 2 — icon pill bar
    ════════════════════════════════════════ */
 .mobile-nav-row {
@@ -289,11 +327,11 @@
   .theme-label    { display: none; }
 
   .header-container {
-    padding: 0.5rem 1.25rem;   /* was 0.75rem — tighter top/bottom */
+    padding: 0.5rem 1.25rem;
   }
 
   .logo-text {
-    font-size: 1.1rem;         /* was 1.25rem — slightly smaller, still elegant */
+    font-size: 1.1rem;
   }
 
   .theme-toggle {
@@ -301,16 +339,16 @@
   }
 
   /* Compact icon pill */
-  .mobile-nav-row  { padding: 0 1.25rem 0.55rem; }  /* was 0.75rem bottom */
-  .mobile-nav-pill { padding: 4px 8px; }             /* was 6px 10px */
-  .mobile-nav-icon { height: 32px; }                 /* was 38px */
+  .mobile-nav-row  { padding: 0 1.25rem 0.55rem; }
+  .mobile-nav-pill { padding: 4px 8px; }
+  .mobile-nav-icon { height: 32px; }
 }
 
 @media (max-width: 400px) {
-  .header-container  { padding: 0.45rem 1rem; }       /* was 0.65rem */
-  .mobile-nav-row    { padding: 0 0.85rem 0.5rem; }   /* was 0.65rem bottom */
-  .mobile-nav-pill   { padding: 3px 6px; }            /* was 5px 6px */
-  .mobile-nav-icon   { height: 30px; }                /* was 34px */
+  .header-container  { padding: 0.45rem 1rem; }
+  .mobile-nav-row    { padding: 0 0.85rem 0.5rem; }
+  .mobile-nav-pill   { padding: 3px 6px; }
+  .mobile-nav-icon   { height: 30px; }
 }
 
 /* Smooth scroll */
