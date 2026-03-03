@@ -30,11 +30,11 @@ const Intro3D = ({ onFinish }) => {
       duration: 2.5 + Math.random() * 2.5,
     })), []);
 
-  // HelloKitty background icons — bigger, more visible
+  // HelloKitty background icons — subtle, moderate numbers
   const kitties = useMemo(() => {
     const items = [];
-    const cols = 5;
-    const rows = 4;
+    const cols = 4;
+    const rows = 3;
     let id = 0;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -44,10 +44,10 @@ const Intro3D = ({ onFinish }) => {
           id: id++,
           left: baseLeft + (Math.random() - 0.5) * (100 / cols) * 0.4,
           top: baseTop + (Math.random() - 0.5) * (100 / rows) * 0.4,
-          size: 58 + Math.random() * 22,
+          size: 40 + Math.random() * 20,
           delay: Math.random() * 5,
           duration: 4 + Math.random() * 3,
-          opacity: 0.15 + Math.random() * 0.1,
+          opacity: 0.10 + Math.random() * 0.08,
         });
       }
     }
