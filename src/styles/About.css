@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
 .about-page {
   padding: 2rem;
   animation: fadeIn 0.6s ease;
@@ -15,6 +17,7 @@
   gap: 3rem;
 }
 
+/* INTRO */
 .about-intro {
   animation: fadeInUp 0.8s ease;
 }
@@ -22,20 +25,52 @@
 .intro-with-image {
   display: grid;
   grid-template-columns: 280px 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: center;
 }
 
+/* 🔥 IMAGE POP + CIRCLE */
 .about-image {
   width: 100%;
 }
 
 .about-image img {
-  width: 100%;
+  width: 280px;
   height: 280px;
-  border-radius: 20px;
+  border-radius: 50%; /* Circle */
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+  display: block;
+  margin: 0 auto;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.18);
+}
+
+.about-image img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 20px 45px rgba(255, 105, 180, 0.25);
+}
+
+/* SVG HEADING */
+.hey-svg {
+  width: 120px;
+  margin-bottom: 1rem;
+}
+
+/* CLEAN FONT FOR DESCRIPTION */
+.intro-text p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #444;
+  margin-bottom: 1rem;
+
+  /* Clean normal font */
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400; /* normal weight */
+  letter-spacing: 0.2px;
+}
+
+.dark-mode .intro-text p {
+  color: #ddd;
 }
 
 .intro-text h2 {
@@ -45,23 +80,13 @@
   font-weight: 700;
 }
 
-.intro-text p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.dark-mode .intro-text p {
-  color: #ddd;
-}
-
+/* SECTION TITLE */
 .subsection-title {
-  font-size: 2.2rem;
+  font-size: 2rem;
   margin-bottom: 2rem;
   text-align: center;
   color: #FF69B4;
-  font-weight: 700;
+  font-weight: 600;
   text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
 }
 
@@ -69,6 +94,7 @@
   text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.4);
 }
 
+/* HOBBIES */
 .hobbies-section {
   animation: fadeInUp 1s ease;
 }
@@ -84,6 +110,11 @@
   transition: transform 0.3s ease;
 }
 
+.hobby-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Dimmed pink */
 .hobby-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -92,7 +123,7 @@
 .hobby-card h3 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
-  color: #FF69B4;
+  color: #e0559f;
   font-weight: 600;
 }
 
@@ -105,45 +136,7 @@
   color: #ccc;
 }
 
-.fun-facts-section {
-  animation: fadeInUp 1.2s ease;
-}
-
-.fun-facts-card {
-  background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 105, 180, 0.1));
-}
-
-.facts-list {
-  list-style: none;
-  padding: 0;
-}
-
-.fact-item {
-  font-size: 1.1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 105, 180, 0.2);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #333;
-}
-
-.dark-mode .fact-item {
-  color: #ddd;
-  border-bottom-color: rgba(255, 105, 180, 0.3);
-}
-
-.fact-item:last-child {
-  border-bottom: none;
-}
-
-.fact-bullet {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  color: #FF69B4;
-  font-weight: bold;
-}
-
+/* JOURNEY */
 .journey-section {
   animation: fadeInUp 1.4s ease;
 }
@@ -154,14 +147,9 @@
 
 .timeline {
   position: relative;
-  /* dot is 15px wide, left: -2.6rem → dot center = -2.6rem + 7.5px        */
-  /* set padding-left so content clears the dot + a small gap               */
   padding-left: 2rem;
 }
 
-/* FIX: align line center to dot center                                      */
-/* dot left: -2.6rem, dot width: 15px → dot center at (-2.6rem + 7.5px)    */
-/* line width: 3px → line left = dot-center - half-line = -2.6rem + 6px    */
 .timeline::before {
   content: '';
   position: absolute;
@@ -169,7 +157,7 @@
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, #FFB6C1, #FF69B4);
+  background: linear-gradient(180deg, #ffc0cb, #ff69b4);
 }
 
 .timeline-item {
@@ -187,14 +175,14 @@
   top: 0.3rem;
   width: 15px;
   height: 15px;
-  background: #FF69B4;
+  background: #ff69b4;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.15);
 }
 
 .timeline-content h3 {
   font-size: 1.3rem;
-  color: #FF69B4;
+  color: #e0559f;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
@@ -208,6 +196,7 @@
   color: #ccc;
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .intro-with-image {
     grid-template-columns: 1fr;

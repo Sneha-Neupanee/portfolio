@@ -48,7 +48,7 @@ const Home = () => {
       <div className="home-content">
         <div className="hero-text">
           <h1 className="hero-title">
-            Hi, I'm <span className="name-highlight">Sneha Neupane</span>
+            I'm <span className="name-highlight">Sneha Neupane</span>
           </h1>
           <p className="hero-subtitle">{text}<span className="cursor-blink">|</span></p>
           <p className="hero-description">

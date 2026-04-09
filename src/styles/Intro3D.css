@@ -1,429 +1,90 @@
-/* ============================
-   Intro3D — Page-Turn Intro
-   ============================ */
-
-/* ── Perspective Wrapper (enables 3D page-fold) ── */
-.intro-perspective-wrapper {
+/* ── Wrapper ── */
+.intro-wrapper {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  perspective: 1800px;
-  pointer-events: none;
-}
-
-/* ── Main Container (the "page" that folds away) ── */
-.intro-container {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background: linear-gradient(160deg, #0d0d0d 0%, #1a1020 40%, #1e0e1e 100%);
-  pointer-events: auto;
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  transition: transform 1.2s cubic-bezier(.77, 0, .175, 1);
-  will-change: transform;
-}
-
-/* ── Page-fold animation ── */
-.intro-fold {
-  transform: rotateY(-105deg);
-  pointer-events: none;
-}
-
-/* Shadow that appears along the folding edge for depth */
-.fold-shadow {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 100%;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
-  opacity: 0;
-  transition: opacity 0.6s 0.1s ease;
-  pointer-events: none;
-  z-index: 50;
-}
-
-.intro-fold .fold-shadow {
-  opacity: 1;
-}
-
-/* ── Radial glow ── */
-.intro-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 105, 180, .16) 0%, transparent 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: glowPulse 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes glowPulse {
-
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: .65;
-  }
-
-  50% {
-    transform: translate(-50%, -50%) scale(1.12);
-    opacity: 1;
-  }
-}
-
-/* ── HelloKitty Background Layer ── */
-.kitty-bg-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.kitty-bg-icon {
-  position: absolute;
-  object-fit: contain;
-  filter: grayscale(0.1) brightness(0.9);
-  animation: kittyFloat ease-in-out infinite;
-  will-change: transform;
-}
-
-@keyframes kittyFloat {
-  0% {
-    transform: translateX(0) translateY(0);
-  }
-
-  25% {
-    transform: translateX(7px) translateY(-4px);
-  }
-
-  50% {
-    transform: translateX(-5px) translateY(3px);
-  }
-
-  75% {
-    transform: translateX(6px) translateY(-2px);
-  }
-
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-}
-
-/* ── Sparkles Layer ── */
-.sparkles-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.sparkle {
-  position: absolute;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow:
-    0 0 4px 1px rgba(255, 182, 193, .8),
-    0 0 10px 2px rgba(255, 105, 180, .4);
-  animation: sparkleFloat ease-in-out infinite;
-}
-
-@keyframes sparkleFloat {
-  0% {
-    transform: translateY(0) scale(.5);
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  80% {
-    opacity: .7;
-  }
-
-  100% {
-    transform: translateY(-45vh) scale(1.2);
-    opacity: 0;
-  }
-}
-
-/* ── Text Content ── */
-.intro-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
+  background: #ffffff;
+  z-index: 999999;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .6rem;
+  justify-content: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.intro-name-wrapper {
-  position: relative;
-  overflow: hidden;
-  padding: .2em .4em;
-}
-
-.intro-title {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 3.8rem;
-  font-weight: 800;
-  letter-spacing: .02em;
-  background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 50%, #FFD1DC 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: titleReveal 1.4s cubic-bezier(.22, 1, .36, 1) forwards;
+/* Smooth exit animation */
+.intro-hide {
   opacity: 0;
-}
-
-@keyframes titleReveal {
-  0% {
-    opacity: 0;
-    filter: blur(12px);
-    transform: scale(.85) translateY(20px);
-  }
-
-  60% {
-    filter: blur(0);
-  }
-
-  100% {
-    opacity: 1;
-    filter: blur(0);
-    transform: scale(1) translateY(0);
-  }
-}
-
-.intro-title-shimmer {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .25), transparent);
-  animation: shimmerSweep 2.2s 1.2s ease-in-out forwards;
+  transform: scale(1.05);
   pointer-events: none;
 }
 
-@keyframes shimmerSweep {
-  0% {
-    left: -60%;
-  }
+/* ── Image ── */
+.intro-image {
+  width: 260px; /* bigger */
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1.8rem;
 
-  100% {
-    left: 160%;
-  }
-}
-
-.intro-subtitle {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1.25rem;
-  font-weight: 300;
-  color: rgba(255, 192, 203, .85);
-  letter-spacing: .06em;
-  animation: subtitleSlideIn 1s 0.8s cubic-bezier(.22, 1, .36, 1) forwards;
+  transform: translateY(-60px) scale(0.95);
   opacity: 0;
+  animation: imageEnter 1s ease forwards;
 }
 
-@keyframes subtitleSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(16px);
+@keyframes imageEnter {
+  to {
+    opacity: 1;
+    transform: translateY(-30px) scale(1);
   }
+}
 
-  100% {
+/* ── Text ── */
+.intro-text {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #000;
+  font-family: "Segoe UI", sans-serif;
+  letter-spacing: 1px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: textFade 0.8s 0.5s ease forwards;
+}
+
+@keyframes textFade {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ── Decorative Rings ── */
-.deco-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 182, 193, .12);
-  pointer-events: none;
-  animation: ringExpand 5s ease-in-out infinite;
-  z-index: 3;
+/* Cursor */
+.intro-text::after {
+  content: "|";
+  margin-left: 6px;
+  animation: blink 1s infinite;
 }
 
-.ring-1 {
-  width: 300px;
-  height: 300px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-delay: 0s;
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
-.ring-2 {
-  width: 480px;
-  height: 480px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-delay: 1s;
-}
-
-.ring-3 {
-  width: 660px;
-  height: 660px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-delay: 2s;
-}
-
-@keyframes ringExpand {
-
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: .12;
-  }
-
-  50% {
-    transform: translate(-50%, -50%) scale(1.06);
-    opacity: .3;
-  }
-}
-
-/* ══════════════════════════
-   Responsive
-   ══════════════════════════ */
-
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  .intro-title {
-    font-size: 2.6rem;
-  }
-
-  .intro-subtitle {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-
-  .intro-glow {
-    width: 320px;
-    height: 320px;
-  }
-
-  .ring-1 {
+  .intro-image {
     width: 200px;
-    height: 200px;
   }
 
-  .ring-2 {
-    width: 320px;
-    height: 320px;
-  }
-
-  .ring-3 {
-    width: 440px;
-    height: 440px;
-  }
-
-  .kitty-bg-icon {
-    max-width: 48px !important;
-    max-height: 48px !important;
-  }
-
-  .fold-shadow {
-    width: 80px;
+  .intro-text {
+    font-size: 2.2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .intro-title {
-    font-size: 2rem;
-  }
-
-  .intro-subtitle {
-    font-size: .85rem;
-    padding: 0 1.5rem;
-  }
-
-  .intro-glow {
-    width: 240px;
-    height: 240px;
-  }
-
-  .ring-1 {
+  .intro-image {
     width: 160px;
-    height: 160px;
   }
 
-  .ring-2 {
-    width: 260px;
-    height: 260px;
-  }
-
-  .ring-3 {
-    width: 360px;
-    height: 360px;
-  }
-
-  .kitty-bg-icon {
-    max-width: 38px !important;
-    max-height: 38px !important;
-  }
-
-  .intro-content {
-    gap: .4rem;
-  }
-}
-
-@media (max-width: 360px) {
-  .intro-title {
-    font-size: 1.6rem;
-  }
-
-  .intro-subtitle {
-    font-size: .75rem;
-  }
-
-  .kitty-bg-icon {
-    max-width: 30px !important;
-    max-height: 30px !important;
-  }
-}
-
-@media (max-height: 500px) {
-  .intro-title {
-    font-size: 2rem;
-  }
-
-  .intro-subtitle {
-    font-size: .9rem;
-  }
-
-  .intro-glow {
-    width: 250px;
-    height: 250px;
-  }
-
-  .ring-1 {
-    width: 160px;
-    height: 160px;
-  }
-
-  .ring-2 {
-    width: 260px;
-    height: 260px;
-  }
-
-  .ring-3 {
-    width: 360px;
-    height: 360px;
+  .intro-text {
+    font-size: 1.8rem;
   }
 }

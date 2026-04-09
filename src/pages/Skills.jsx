@@ -1,136 +1,93 @@
 import React from 'react';
-import Card from '../components/Card';
 import '../styles/Skills.css';
+import frontendSvg from '../assets/frontend.svg';
+import backendSvg from '../assets/backend.svg';
+import creativeSvg from '../assets/creative.svg';
+import aiSvg from '../assets/AI.svg';
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      category: 'Frontend',
-      icon: '🎨',
-      skills: [
-        { name: 'React', level: 90 },
-        { name: 'Next.js', level: 85 },
-        { name: 'JavaScript', level: 88 },
-        { name: 'HTML5', level: 95 },
-        { name: 'CSS3', level: 92 },
-        { name: 'Tailwind CSS', level: 85 },
-        { name: 'Bootstrap', level: 80 },
-        { name: 'UI/UX Design', level: 88 },
-        { name: 'Responsive Design', level: 92 }
-      ]
-    },
-    {
-      category: 'Backend',
-      icon: '⚙️',
-      skills: [
-        { name: 'Node.js', level: 85 },
-        { name: 'Express', level: 82 },
-        { name: 'Python', level: 88 },
-        { name: 'Django', level: 75 },
-        { name: 'FastAPI', level: 82 },
-        { name: 'MongoDB', level: 80 },
-        { name: 'PostgreSQL', level: 72 },
-        { name: 'REST APIs', level: 88 },
-        { name: 'Socket.IO', level: 80 },
-        { name: 'JWT Auth', level: 85 }
-      ]
-    },
-    {
-      category: 'AI/ML & Tools',
-      icon: '🤖',
-      skills: [
-        { name: 'Machine Learning', level: 78 },
-        { name: 'TensorFlow', level: 75 },
-        { name: 'OpenAI API', level: 82 },
-        { name: 'Data Analysis', level: 80 },
-        { name: 'Git & GitHub', level: 92 },
-        { name: 'VS Code', level: 95 },
-        { name: 'Postman', level: 85 },
-        { name: 'Figma', level: 78 }
-      ]
-    }
-  ];
-
-  const additionalSkills = [
-    'Problem Solving',
-    'Team Collaboration',
-    'Agile/Scrum',
-    'UI/UX Design',
-    'Debugging',
-    'Code Review',
-    'Time Management',
-    'Communication'
-  ];
-
   return (
     <div className="skills-page">
-      <div className="skills-container">
-        <h1 className="section-title">My Skills</h1>
-        <p className="skills-intro">
-          A comprehensive showcase of technologies and tools I've mastered to build exceptional web applications.
-          Constantly expanding my expertise!
-        </p>
+      <div className="skills-wrap">
 
-        <div className="skills-categories">
-          {skillCategories.map((category, index) => (
-            <Card key={index} className="category-card" style={{ animationDelay: `${index * 0.2}s` }}>
-              <div className="category-header">
-                <span className="category-icon">{category.icon}</span>
-                <h2 className="category-title">{category.category}</h2>
-              </div>
-
-              <div className="skills-list">
-                {category.skills.map((skill, idx) => (
-                  <div key={idx} className="skill-item">
-                    <div className="skill-info">
-                      <span className="skill-name">{skill.name}</span>
-                      <span className="skill-percentage">{skill.level}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div
-                        className="skill-progress"
-                        style={{
-                          '--skill-width': `${skill.level}%`,  // FIX: pass as CSS variable so @keyframes growBar can use it
-                          animationDelay: `${(index * 0.2) + (idx * 0.1)}s`
-                          // Removed: width inline style — the animation now controls width via --skill-width
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          ))}
+        <div className="top-bar">
+          <span className="pg-title">Skills</span>
+          <span className="pg-sub">What I bring to the table</span>
         </div>
 
-        <div className="additional-skills-section">
-          <h2 className="subsection-title">Soft Skills & More</h2>
-          <Card className="additional-skills-card">
-            <div className="additional-skills-grid">
-              {additionalSkills.map((skill, index) => (
-                <div
-                  key={index}
-                  className="additional-skill-badge"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {skill}
-                </div>
+        <div className="bento">
+
+          <div className="card span8">
+            <img src={frontendSvg} alt="Frontend" className="skill-svg frontend" />
+            <h3 className="ctitle">Interfaces & Web</h3>
+            <div className="chips">
+              {['React','Next.js','JavaScript','TypeScript','Three.js','HTML5','CSS3','Tailwind CSS','UI/UX Design','Responsive Design'].map(s => (
+                <span key={s} className="chip">{s}</span>
               ))}
             </div>
-          </Card>
-        </div>
+          </div>
 
-        <div className="learning-section">
-          <Card className="learning-card">
-            <h3>🌱 Currently Learning</h3>
-            <div className="learning-items">
-              <span className="learning-badge">TypeScript</span>
-              <span className="learning-badge">Docker</span>
-              <span className="learning-badge">DevOps</span>
-              <span className="learning-badge">GraphQL</span>
-              <span className="learning-badge">AWS</span>
+          <div className="card span4 pink-bg stat-card">
+            <span className="clabel">Experience</span>
+            <div className="stat-num">4+</div>
+            <div className="stat-label">years building on the web</div>
+          </div>
+
+          <div className="card span5">
+            <img src={backendSvg} alt="Backend" className="skill-svg backend" />
+            <h3 className="ctitle">Server & Data</h3>
+            <div className="chips">
+              {['Node.js','Express','Python','FastAPI','Django','MongoDB','PostgreSQL','REST APIs','Socket.IO'].map(s => (
+                <span key={s} className="chip">{s}</span>
+              ))}
             </div>
-          </Card>
+          </div>
+
+          <div className="card span4 light-rose">
+            <img src={creativeSvg} alt="3D & Creative" className="skill-svg creative" />
+            <h3 className="ctitle rose">Modeling & Motion</h3>
+            <div className="chips">
+              {['Blender','3D Modeling','Animation','Motion Graphics','Rigging','After Effects'].map(s => (
+                <span key={s} className="chip on-rose">{s}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="card span3 dark-pink stat-card">
+            <span className="clabel white">Stack depth</span>
+            <div className="stat-num white">30+</div>
+            <div className="stat-label white">tools & technologies</div>
+          </div>
+
+          <div className="card span4">
+            <img src={aiSvg} alt="AI/ML" className="skill-svg ai" />
+            <h3 className="ctitle">Intelligence & Data</h3>
+            <div className="chips">
+              {['Machine Learning','TensorFlow','OpenAI API','Data Analysis','Figma','Git & GitHub'].map(s => (
+                <span key={s} className="chip">{s}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="card span5 pink-bg">
+            <span className="clabel">Human Side</span>
+            <h3 className="ctitle">Soft Skills</h3>
+            <div className="chips">
+              {['Problem Solving','Collaboration','Agile / Scrum','Code Review','Communication','Documentation'].map(s => (
+                <span key={s} className="chip on-pink">{s}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="card span3 learning-card">
+            <span className="clabel">Currently learning</span>
+            <div className="chips">
+              {['Docker','DevOps','GraphQL','AWS'].map(s => (
+                <span key={s} className="chip outlined">{s}</span>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

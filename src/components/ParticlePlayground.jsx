@@ -1,110 +1,397 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/ParticlePlayground.css';
+import React, { useEffect, useRef, useState, Suspense } from "react";
+import { useNavigate } from "react-router-dom";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useGLTF, useAnimations } from "@react-three/drei";
+import "../styles/ParticlePlayground.css";
+import demoSvg from "../assets/demo.svg";
+import okSvg from "../assets/ok.svg";
+import skillsSvg from "../assets/skills.svg";
+import frontSvg from "../assets/front.svg";
+import backSvg from "../assets/back.svg";
 
-const ParticlePlayground = () => {
-  const [visible, setVisible] = useState(false);
-  const [typedText, setTypedText] = useState('');
-  const fullText = "Projects I Have Worked On";
-  const [typingStarted, setTypingStarted] = useState(false);
-  const navigate = useNavigate();
-  const sectionRef = useRef(null);
-
+/* ─── 3D Model ───────────────────────── */
+function Model({ path }) {
+  const gltf = useGLTF(path);
+  const { actions } = useAnimations(gltf.animations, gltf.scene);
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    if (actions) Object.values(actions).forEach((a) => a.play());
+  }, [actions]);
+
+  return <primitive object={gltf.scene} scale={1.6} position={[0, -0.8, 0]} />;
+}
+
+function ModelViewer({ width, height }) {
+  return (
+    <div style={{ width: width, height: height, flexShrink: 0 }}>
+      <Canvas
+        camera={{ position: [0, 1.2, 3.5], fov: 55 }}
+        style={{ background: "transparent" }}
+        gl={{ alpha: true }}
+      >
+        <ambientLight intensity={2} />
+        <directionalLight position={[5, 5, 5]} intensity={3} />
+        <directionalLight position={[-5, 5, -5]} intensity={1.5} />
+        <pointLight position={[0, 5, 0]} intensity={2} />
+        <Suspense fallback={null}>
+          <Model path="/models/model.glb" />
+        </Suspense>
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          enableRotate={false}
+          target={[0, 0.5, 0]}
+        />
+      </Canvas>
+    </div>
+  );
+}
+
+/* ─── Project data ──────────────────────────────────────────── */
+const FRONTEND_PROJECTS = [
+  {
+    id: 1,
+    name: "Dr. Priyanka's Clinic",
+    image: "/drpriyanka.png",
+    link: "https://drpriyankasclinic.com/",
+    desc: "A clean, trust-building website for a medical clinic appointment info, services, and a welcoming patient experience.",
+  },
+  {
+    id: 2,
+    name: "Sriyog Consulting",
+    image: "/sriyog.png",
+    link: "https://sriyog.com/",
+    desc: "Corporate identity site for a consulting firm with smooth navigation, service showcases, and professional UI.",
+  },
+  {
+    id: 3,
+    name: "TACKLES",
+    image: "/handyman.png",
+    link: "https://myhandymanfolder.vercel.app/",
+    desc: "A vibrant, appetite-first landing page with bold visuals and a seamless menu browsing experience.",
+  },
+];
+
+const BACKEND_PROJECTS = [
+  {
+    id: 1,
+    name: "K Handyman",
+    image: "/k-handyman.png",
+    link: "https://mernhandymanfinal.vercel.app/",
+    github: "https://github.com/Sneha-Neupanee/mernhandymanfinal",
+    tech: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.IO",
+      "Leaflet",
+      "JWT",
+    ],
+    desc: "Full-stack MERN marketplace connecting homeowners with skilled handymen. Real-time chat, Bayesian provider ranking, interactive maps, and end-to-end service management.",
+  },
+  {
+    id: 2,
+    name: "SmartSales AI Assistant",
+    image: "/smart.png",
+    link: "https://smart-sales-with-ai-assistant.vercel.app/",
+    github: "https://github.com/Sneha-Neupanee/SmartSales-with-AI-Assistant",
+    tech: ["React", "Python", "FastAPI", "TensorFlow", "OpenAI API", "Pandas"],
+    desc: "AI-powered sales analytics platform with ML forecasting, natural language queries, OpenAI insights, and a live dashboard — React frontend backed by Python FastAPI.",
+  },
+];
+
+/* ─── Scroll-reveal hook ─────────────────────────────────────── */
+function useReveal() {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !typingStarted) {
-          setTypingStarted(true);
+        if (entry.isIntersecting) {
           setVisible(true);
+          obs.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.12 }
     );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, visible];
+}
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [typingStarted]);
-
-  useEffect(() => {
-    if (typingStarted && typedText.length < fullText.length) {
-      const timeout = setTimeout(() => {
-        setTypedText(fullText.slice(0, typedText.length + 1));
-      }, 50); // Adjust speed here for smoothness
-      return () => clearTimeout(timeout);
-    }
-  }, [typingStarted, typedText, fullText]);
-
-  const projects = [
-    {
-      id: 1,
-      name: "Dr. Priyanka's Clinic",
-      image: "/drpriyanka.png",
-      link: "https://drpriyankasclinic.com/",
-      description: "A comprehensive website for a medical clinic."
-    },
-    {
-      id: 2,
-      name: "SRIYOG Consulting",
-      image: "/sriyog.png",
-      link: "https://sriyog.com/",
-      description: "Corporate website for a leading consulting firm."
-    },
-    {
-      id: 3,
-      name: "TACKLES",
-      image: "/handyman.png",
-      link: "https://myhandymanfolder.vercel.app/",
-      description: "Service booking platform for home maintenance."
-    }
-  ];
+/* ─── Project card ───────────────────────────────────────────── */
+const ProjectCard = ({ project, index, windowWidth, isBackend }) => {
+  const [ref, visible] = useReveal();
+  const desktopWidth = windowWidth >= 1200 ? (isBackend ? 280 : 260) : 48 + "%"; // slightly wider for backend
+  const cardWidth = windowWidth < 768 ? "90%" : desktopWidth;
 
   return (
-    <div className="project-showcase-container" ref={sectionRef}>
-      <div className="project-header">
-        <h3 className="typing-title">
-          {typedText}
-          <span className="cursor-blink">|</span>
-        </h3>
+    <div
+      ref={ref}
+      className={`pp-project-card ${visible ? "pp-visible" : ""}`}
+      style={{
+        transitionDelay: `${index * 140}ms`,
+        width: cardWidth,
+        margin: "0 auto",
+      }}
+    >
+      <div className="pp-card-img-wrap">
+        <img
+          src={project.image}
+          alt={project.name}
+          onError={(e) => {
+            e.target.src =
+              "https://via.placeholder.com/480x260/FFB6C1/fff?text=" +
+              encodeURIComponent(project.name);
+          }}
+        />
       </div>
-
-      <div className="project-cards-wrapper">
-        {projects.map((project, index) => (
-          <div
-            key={project.id}
-            className={`project-card ${visible ? 'visible' : ''}`}
-            style={{ transitionDelay: `${index * 150}ms` }}
-          >
-            <div className="card-image-container">
-              <img src={project.image} alt={project.name} className="project-image" />
-            </div>
-            <div className="card-info">
-              <h4>{project.name}</h4>
-              <div className="card-buttons">
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="view-project-btn">
-                  View Project
-                </a>
-              </div>
-            </div>
+      <div className="pp-card-body">
+        <h4 className="pp-card-title">{project.name}</h4>
+        <p className="pp-card-desc">{project.desc}</p>
+        {project.tech && (
+          <div className="pp-tech-row">
+            {project.tech.map((t) => (
+              <span key={t} className="pp-tech-badge">
+                {t}
+              </span>
+            ))}
           </div>
-        ))}
+        )}
+        <div className="pp-card-actions">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="custom-btn btn-primary pp-btn"
+          >
+            Live Demo
+          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="custom-btn btn-secondary pp-btn"
+            >
+              GitHub
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ─── Main component ─────────────────────────────────────────── */
+const ParticlePlayground = () => {
+  const navigate = useNavigate();
+  const [headerRef, headerVisible] = useReveal();
+  const [threeDRef, threeDVisible] = useReveal();
+  const [feRef, feVisible] = useReveal();
+  const [beRef, beVisible] = useReveal();
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowWidth < 768;
+
+  const canvasWidth = isMobile ? windowWidth * 0.45 : 400;
+  const canvasHeight = isMobile ? windowWidth * 0.55 : 500;
+
+  return (
+    <section className="pp-skills-section">
+      <div
+        ref={headerRef}
+        className={`pp-section-label ${headerVisible ? "pp-visible" : ""}`}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "16px",
+          flexWrap: "wrap",
+        }}
+      >
+        <span className="pp-label-line" />
+        <img
+          src={skillsSvg}
+          alt="My Skills"
+          style={{ width: isMobile ? "160px" : "220px", height: "auto" }}
+        />
+        <span className="pp-label-line" />
       </div>
 
-      <div className="skills-button-container">
-        <button className="view-skills-btn" onClick={() => navigate('/projects')}>
+      {/* 3D + demo section */}
+      <div
+        ref={threeDRef}
+        className={`pp-skill-block ${threeDVisible ? "pp-visible" : ""}`}
+      >
+        <div className="pp-skill-heading-row">
+          <img
+            src={okSvg}
+            alt="3D Modeling & Animation"
+            style={{
+              width: isMobile ? "280px" : "420px",
+              height: "auto",
+              display: "block",
+              marginTop: isMobile ? "-10px" : "-30px",
+            }}
+          />
+        </div>
+
+        <div
+          className="pp-3d-space"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+            justifyContent: "center",
+            gap: isMobile ? "12px" : "24px",
+          }}
+        >
+          <ModelViewer width={canvasWidth} height={canvasHeight} />
+          <div style={{ marginTop: isMobile ? "-10px" : "15px", flexShrink: 0 }}>
+            {/* moved demo down by ~1.5cm */}
+            <img
+              src={demoSvg}
+              alt="demo"
+              style={{
+                width: isMobile ? "120px" : "180px",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="pp-skill-desc-row">
+          <p className="pp-skill-desc">
+            I use <strong>Blender</strong> to sculpt, rig, and animate 3D models
+            from character design to product visualisation. My workflow covers
+            full scene lighting, material shading, and render-ready exports that
+            embed seamlessly into web experiences.
+          </p>
+        </div>
+      </div>
+
+      <div className="pp-divider" />
+
+      {/* Frontend projects */}
+      <div
+        ref={feRef}
+        className={`pp-skill-block ${feVisible ? "pp-visible" : ""}`}
+      >
+        <div className="pp-skill-heading-row">
+          <img
+            src={frontSvg}
+            alt="Front-end & UI/UX"
+            style={{
+              width: isMobile ? "260px" : "380px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </div>
+
+        <div
+          className="pp-projects-grid"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "26px", // slightly increased gap
+          }}
+        >
+          {FRONTEND_PROJECTS.map((p, i) => (
+            <ProjectCard key={p.id} project={p} index={i} windowWidth={windowWidth} />
+          ))}
+        </div>
+
+        <div className="pp-skill-desc-row">
+          <p className="pp-skill-desc">
+            I build interfaces that feel effortless to use. From component
+            libraries to polished landing pages, I focus on clarity, motion, and
+            responsiveness writing clean React and CSS that works beautifully
+            across every device.
+          </p>
+        </div>
+      </div>
+
+      <div className="pp-divider" />
+
+      {/* Backend projects */}
+      <div
+        ref={beRef}
+        className={`pp-skill-block ${beVisible ? "pp-visible" : ""}`}
+      >
+        <div className="pp-skill-heading-row">
+          <img
+            src={backSvg}
+            alt="Back-end"
+            style={{
+              width: isMobile ? "160px" : "200px",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </div>
+
+        <div
+          className="pp-projects-grid pp-two-col"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "10px", // slightly increased gap
+          }}
+        >
+          {BACKEND_PROJECTS.map((p, i) => (
+            <ProjectCard
+              key={p.id}
+              project={p}
+              index={i}
+              windowWidth={windowWidth}
+              isBackend={true}
+            />
+          ))}
+        </div>
+
+        <div className="pp-skill-desc-row">
+          <p className="pp-skill-desc">
+            I design and build server-side systems that are fast, secure, and
+            easy to maintain spanning Node/Express REST APIs, MongoDB, Python
+            FastAPI, real-time Socket.IO, JWT auth, and ML model deployment.
+          </p>
+        </div>
+      </div>
+
+      {/* Footer CTAs */}
+      <div
+        className="pp-footer-ctas"
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          gap: "12px",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <button className="custom-btn btn-primary" onClick={() => navigate("/projects")}>
           View More Projects
         </button>
-        <button className="view-skills-btn" onClick={() => navigate('/skills')}>
+        <button className="custom-btn btn-secondary" onClick={() => navigate("/skills")}>
           View My Skills
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

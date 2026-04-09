@@ -1,247 +1,396 @@
-.project-showcase-container {
+/* ═══════════════════════════════════════════════════════════════
+   ParticlePlayground — Skills Section  (center-aligned)
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Section shell ─────────────────────────────────────────── */
+.pp-skills-section {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 6rem 2rem;
+  padding: 5rem 2rem 6rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.project-header {
+  gap: 0;
   text-align: center;
-  margin-bottom: 5rem;
-  min-height: 60px;
-  /* Prevent cumulative layout shift */
 }
 
-.typing-title {
-  font-size: 2.5rem;
-  color: #ff9ecb;
-  /* Soft light pink */
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  letter-spacing: 1px;
-  display: inline-block;
-}
-
-.cursor-blink {
-  display: inline-block;
-  color: #ff9ecb;
-  animation: blink 1s step-end infinite;
-  margin-left: 5px;
-  font-weight: 300;
-}
-
-@keyframes blink {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-}
-
-.project-cards-wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
+/* ── "My Skills" label ─────────────────────────────────────── */
+.pp-section-label {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
   width: 100%;
-  padding: 0 1rem;
+  margin-bottom: 4.5rem;
+
+  /* removed scroll animation */
+  opacity: 1;
+  transform: none;
 }
 
-.project-card {
-  background: white;
-  border-radius: 20px;
+.pp-label-line {
+  flex: 1;
+  height: 2px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, transparent, #FFB6C1 50%, transparent);
+  position: relative;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  opacity: 0;
-  transform: translateY(30px);
+}
+
+/* shimmer animation stays (only decorative, not scroll-based) */
+.pp-label-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  animation: ppShimmer 2.4s ease-in-out infinite;
+}
+
+@keyframes ppShimmer {
+  0%   { left: -60%; }
+  100% { left: 120%; }
+}
+
+.pp-label-text {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #FF69B4;
+  white-space: nowrap;
+}
+
+/* ── Skill block ───────────────────────────────────────────── */
+.pp-skill-block {
+  width: 100%;
+  padding: 3.5rem 0 4rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  /* Ensure equal height */
-  min-height: 400px;
-  /* Increased height */
-}
+  align-items: center;
 
-.project-card.visible {
+  /* removed scroll animation */
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 50px rgba(255, 105, 180, 0.15);
-  /* Soft pink shadow */
+/* heading row */
+.pp-skill-heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.8rem;
 }
 
-.card-image-container {
+.pp-skill-number {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #FF69B4;
+  opacity: 0.75;
+  padding-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.pp-skill-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.dark-mode .pp-skill-title { color: #f0f0f0; }
+
+.pp-pink { color: #FF69B4; }
+
+/* ── 3D model area ─────────────────────────────────────────── */
+.pp-3d-space {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 250px;
-  /* Increased height */
-  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+/* ── Description paragraph ─────────────────────────────────── */
+.pp-skill-desc-row {
+  max-width: 640px;
+  text-align: center;
+}
+
+.pp-skill-desc {
+  font-size: 1.05rem;
+  color: #666;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.pp-skill-desc strong { color: #FF69B4; font-weight: 600; }
+
+.dark-mode .pp-skill-desc { color: #aaa; }
+
+/* ── Animated divider (kept, not scroll-based) ─────────────── */
+.pp-divider {
+  width: 100%;
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, transparent, #FFB6C1 30%, #FF69B4 50%, #FFB6C1 70%, transparent);
+  background-size: 200% 100%;
+  animation: ppDividerFlow 3s ease-in-out infinite;
+  opacity: 0.55;
   position: relative;
 }
 
-.project-image {
+@keyframes ppDividerFlow {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* ── Projects grid ─────────────────────────────────────────── */
+.pp-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 2.8rem;
+}
+
+/* Backend two projects row, slightly wider, smaller gap, still row */
+.pp-projects-grid.pp-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 400px)); /* slightly wider */
+  justify-content: center;
+  gap: 1rem; /* slightly smaller gap */
+}
+
+/* ── Project card ─────────────────────────────────────────── */
+.pp-project-card {
+  background: #fff;
+  border: 1.5px solid #f0f0f0;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  /* removed scroll animation */
+  opacity: 1;
+  transform: none;
+
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.pp-project-card:hover {
+  box-shadow: 0 14px 40px rgba(255, 105, 180, 0.14);
+  border-color: #FFB6C1;
+  transform: translateY(-5px);
+}
+
+.dark-mode .pp-project-card {
+  background: #1e1e1e;
+  border-color: #2e2e2e;
+}
+
+.dark-mode .pp-project-card:hover { border-color: #FF69B4; }
+
+/* card image */
+.pp-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.pp-card-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
+  display: block;
 }
 
-.project-card:hover .project-image {
+.pp-project-card:hover .pp-card-img-wrap img {
   transform: scale(1.05);
 }
 
-.card-info {
-  padding: 2rem;
-  text-align: center;
-  background: #fff;
-  flex-grow: 1;
+/* card body */
+.pp-card-body {
+  padding: 1.4rem 1.5rem 1.6rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  gap: 0.7rem;
+  flex: 1;
 }
 
-.card-info h4 {
-  margin: 0 0 1.5rem;
-  color: #333;
-  font-size: 1.5rem;
+.pp-card-title {
+  font-size: 1.05rem;
   font-weight: 700;
+  margin: 0;
+  color: #222;
 }
 
-.view-project-btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #FFB6C1, #ff8da1);
-  color: white;
-  padding: 12px 30px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.25);
-  position: relative;
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
+.dark-mode .pp-card-title { color: #f0f0f0; }
+
+.pp-card-desc {
+  font-size: 0.88rem;
+  color: #777;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
 }
 
-/* Glossy effect */
-.view-project-btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
-  border-radius: 50px 50px 0 0;
-  pointer-events: none;
-}
+.dark-mode .pp-card-desc { color: #aaa; }
 
-.view-project-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.35);
-  /* Glow effect */
-  background: linear-gradient(135deg, #ff9ecb, #fb6f92);
-}
-
-/* Skills Button */
-.skills-button-container {
-  margin-top: 5rem;
-  width: 100%;
+/* tech badges */
+.pp-tech-row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
-.view-skills-btn {
-  background: linear-gradient(135deg, #FFB6C1, #ff8da1);
-  color: white;
-  padding: 16px 40px;
-  border-radius: 50px;
-  font-size: 1.2rem;
+.pp-tech-badge {
+  font-size: 0.72rem;
   font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.25);
-  position: relative;
-  overflow: hidden;
+  padding: 0.22rem 0.6rem;
+  background: #fdf5f8;
+  border: 1px solid #f5d5e4;
+  border-radius: 20px;
+  color: #FF69B4;
+  white-space: nowrap;
 }
 
-.view-skills-btn::after {
-  content: '';
+.dark-mode .pp-tech-badge {
+  background: #2a1a22;
+  border-color: #4a2535;
+}
+
+/* card buttons */
+.pp-card-actions {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.pp-btn {
+  font-size: 0.82rem !important;
+  padding: 0.5rem 1.1rem !important;
+  text-decoration: none;
+}
+
+/* footer */
+
+.pp-footer-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  width: 100%;
+
+  border-top: none;
+  position: relative;
+
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ✨ NEW: thicker animated gradient line */
+.pp-footer-ctas::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
+
   width: 100%;
-  height: 50%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
-  border-radius: 50px 50px 0 0;
-  pointer-events: none;
+  height: 4px;
+
+  border-radius: 99px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #FFB6C1 25%,
+    #FF69B4 50%,
+    #FFB6C1 75%,
+    transparent
+  );
+
+  background-size: 200% 100%;
+  animation: ppFooterLineFlow 3s ease-in-out infinite;
+
+  opacity: 0.8;
 }
 
-.view-skills-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(255, 105, 180, 0.4);
-  background: linear-gradient(135deg, #ff9ecb, #fb6f92);
+@keyframes ppFooterLineFlow {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
 }
 
-/* Dark Mode Styles */
-.dark-mode .project-card {
-  background: #1e1e1e;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+.dark-mode .pp-footer-ctas { border-top-color: #2e2e2e; }
+
+/* buttons */
+.custom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 2px solid #111;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  background: none;
 }
 
-.dark-mode .card-info {
-  background: #1e1e1e;
+.btn-primary  { background: #111; color: #fff; border-color: #111; }
+.btn-primary:hover {
+  background: #FF69B4; border-color: #FF69B4; color: #fff;
 }
 
-.dark-mode .card-info h4 {
-  color: #f0f0f0;
+.btn-secondary { background: transparent; color: #111; border-color: #111; }
+.btn-secondary:hover {
+  background: #FF69B4; border-color: #FF69B4; color: #fff;
 }
 
-.dark-mode .project-card:hover {
-  box-shadow: 0 25px 50px rgba(255, 105, 180, 0.15);
+/* ── MOBILE RESPONSIVE ADJUSTMENTS ─────────────────────────── */
+
+/* Tablet + small desktop */
+@media (max-width: 900px) {
+  .pp-projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .pp-projects-grid.pp-two-col { grid-template-columns: 1fr; max-width: 420px; justify-content: center; }
+  .pp-skill-title { font-size: 2rem; }
+  .pp-skill-desc { font-size: 0.98rem; }
+  .pp-3d-space { margin-bottom: 1.5rem; }
+  .pp-footer-ctas { flex-direction: column; align-items: center; }
 }
 
-/* Responsive Grid */
-@media (max-width: 1024px) {
-  .project-cards-wrapper {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-}
+/* Mobile */
+@media (max-width: 600px) {
+  .pp-skill-title { font-size: 1.8rem; }
+  .pp-skill-number { font-size: 1rem; }
+  .pp-skill-desc { font-size: 0.95rem; line-height: 1.6; padding: 0 1rem; }
+  .pp-projects-grid { grid-template-columns: 1fr; max-width: 100%; margin: 0 auto 2.8rem; gap: 1.5rem; }
+  .pp-project-card { font-size: 0.9rem; }
+  .pp-card-body { padding: 1rem 1rem 1.2rem; }
+  .pp-card-title { font-size: 0.95rem; }
+  .pp-card-desc { font-size: 0.8rem; }
+  .pp-tech-badge { font-size: 0.65rem; padding: 0.18rem 0.5rem; }
 
-@media (max-width: 768px) {
-  .project-cards-wrapper {
-    grid-template-columns: 1fr;
-    max-width: 450px;
-    margin: 0 auto;
-  }
+  .pp-footer-ctas { flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
 
-  .typing-title {
-    font-size: 1.8rem;
-  }
-
-  .project-header {
-    margin-bottom: 3rem;
-  }
-
-  .project-showcase-container {
-    padding: 4rem 1.5rem;
-  }
-}
+  .pp-3d-space { margin-bottom: 1rem; }
+  .pp-section-label { flex-direction: column; gap: 0.7rem; margin-bottom: 3rem; }
+  .pp-label-text { font-size: 0.9rem; letter-spacing: 0.18em; }
+  .pp-label-line { height: 1.5px; }
+} 
