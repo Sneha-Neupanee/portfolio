@@ -3,7 +3,7 @@ import '../styles/Skills.css';
 import frontendSvg from '../assets/frontend.svg';
 import backendSvg from '../assets/backend.svg';
 import creativeSvg from '../assets/creative.svg';
-import aiSvg from '../assets/AI.svg';
+import aiSvg from '../assets/ai.svg';
 
 const Skills = () => {
   return (
