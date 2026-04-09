@@ -1,6 +1,6 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -46,6 +46,13 @@ function App() {
     document.body.style.color = darkMode ? '#ffb6c1' : '#000';
   }, [darkMode]);
 
+  // Force homepage on first load if user navigates directly to another route
+  useEffect(() => {
+    if (window.location.pathname !== '/') {
+      window.history.replaceState({}, '', '/');
+    }
+  }, []);
+
   // Always render main content; intro overlays on top so home page peeks through
   return (
     <>
@@ -68,6 +75,8 @@ function App() {
               <Route path="/skills" element={<Skills />} />
               <Route path="/experience" element={<Experience />} />
               <Route path="/contact" element={<Contact />} />
+              {/* Redirect any unknown route to homepage */}
+              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </main>
 
