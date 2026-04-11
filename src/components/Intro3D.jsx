@@ -5,7 +5,7 @@ const Intro3D = ({ onFinish }) => {
   const [hide, setHide] = useState(false);
   const [text, setText] = useState("");
 
-  const fullText = "Hello!";
+  const fullText = "Ni Hao!";
 
   const handleFinish = useCallback(() => {
     onFinish();
