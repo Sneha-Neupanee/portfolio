@@ -49,7 +49,7 @@ const FRONTEND_PROJECTS = [
     name: "Dr. Priyanka's Clinic",
     image: "/drpriyanka.png",
     link: "https://drpriyankasclinic.com/",
-    desc: "A clean, trust-building website for a medical clinic — appointment info, services, and a welcoming patient experience.",
+    desc: "A clean, trust-building website for a medical clinic appointment info, services, and a welcoming patient experience.",
   },
   {
     id: 2,
@@ -92,7 +92,7 @@ const BACKEND_PROJECTS = [
     link: "https://smart-sales-with-ai-assistant.vercel.app/",
     github: "https://github.com/Sneha-Neupanee/SmartSales-with-AI-Assistant",
     tech: ["React", "Python", "FastAPI", "TensorFlow", "OpenAI API", "Pandas"],
-    desc: "AI-powered sales analytics platform with ML forecasting, natural language queries, OpenAI insights, and a live dashboard — React frontend backed by Python FastAPI.",
+    desc: "AI-powered sales analytics platform with ML forecasting, natural language queries, OpenAI insights, and a live dashboard React frontend backed by Python FastAPI.",
   },
 ];
 
