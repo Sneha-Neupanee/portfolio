@@ -13,6 +13,7 @@ import Intro3D from './components/Intro3D';
 import FloatingParticles from './components/FloatingParticles';
 import CustomCursor from './components/CustomCursor';
 import ClickEffects from './components/ClickEffects';
+import MobileSwipeNavigator from "./components/MobileSwipeNavigator";
 import './App.css';
 
 /* ScrollToTop component: scrolls to top on route change */
@@ -53,31 +54,39 @@ function App() {
     }
   }, []);
 
-  // Always render main content; intro overlays on top so home page peeks through
   return (
     <>
       <CustomCursor />
       <ClickEffects />
+
       {showIntro && <Intro3D onFinish={handleIntroFinish} />}
+
       <Router>
         <ScrollToTop />
+
         <div className={`App ${darkMode ? 'dark-mode' : 'light-mode'}`}>
           <FloatingParticles />
+
           {/* Header with dark mode toggle */}
           <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
           {/* Main content */}
           <main className="main-content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/contact" element={<Contact />} />
-              {/* Redirect any unknown route to homepage */}
-              <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
+            
+            {/* 🔥 SWIPE WRAPPER ADDED HERE */}
+            <MobileSwipeNavigator>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/skills" element={<Skills />} />
+                <Route path="/experience" element={<Experience />} />
+                <Route path="/contact" element={<Contact />} />
+                {/* Redirect any unknown route to homepage */}
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
+            </MobileSwipeNavigator>
+
           </main>
 
           {/* Footer */}
