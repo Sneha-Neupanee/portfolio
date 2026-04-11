@@ -1,24 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Card from '../components/Card';
 import '../styles/Experience.css';
 
 const TimelineItem = ({ children, index }) => {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <div
-      ref={ref}
-      className={`timeline-item ${visible ? 'timeline-item--visible' : ''}`}
+      className="timeline-item timeline-item--visible"
       style={{ transitionDelay: `${index * 0.12}s` }}
     >
       {children}
@@ -37,14 +24,6 @@ const Experience = () => {
       duration: '',
       type: 'Full-time',
       description: 'Developed and maintained full-stack web applications, collaborating with cross-functional teams to deliver high-quality software solutions.',
-      responsibilities: [
-        'Developed responsive web applications using React and modern JavaScript',
-        'Collaborated with senior developers on full-stack projects',
-        'Implemented RESTful APIs and integrated third-party services',
-        'Participated in code reviews and agile development processes',
-        'Fixed bugs and optimized application performance',
-        'Wrote clean, maintainable, and well-documented code'
-      ],
       technologies: ['React', 'Node.js', 'JavaScript', 'Git', 'REST APIs', 'Agile'],
       certificate: { file: '/abc.jpg', type: 'image', name: 'Full Stack Developer', provider: 'SRIYOG Consulting', year: '2024' }
     },
@@ -55,14 +34,6 @@ const Experience = () => {
       duration: 'December 2025 - March 2026',
       type: 'Full-time',
       description: 'Worked as a MERN Stack Developer building scalable web applications and contributing to innovative digital solutions.',
-      responsibilities: [
-        'Built full-stack applications using MongoDB, Express, React, and Node.js',
-        'Designed and implemented RESTful APIs and database schemas',
-        'Collaborated with the product team to deliver feature-rich applications',
-        'Optimized front-end performance and ensured mobile responsiveness',
-        'Participated in architecture discussions and technical decision-making',
-        'Wrote unit tests and maintained code quality standards'
-      ],
       technologies: ['MongoDB', 'Express', 'React', 'Node.js', 'JavaScript', 'Git'],
       certificate: { file: '/abcd.pdf', type: 'pdf', name: 'MERN Stack Developer', provider: 'SCODUS Innovations', year: '2025' }
     },
@@ -73,14 +44,6 @@ const Experience = () => {
       duration: '2022 - Present',
       type: 'Freelance',
       description: 'Creating custom web solutions for clients, from concept to deployment. Specialized in full-stack development and modern UI/UX design.',
-      responsibilities: [
-        'Built custom websites and web applications for various clients',
-        'Provided end-to-end solutions from design to deployment',
-        'Implemented responsive designs and modern UI/UX principles',
-        'Integrated APIs and third-party services',
-        'Delivered projects on time with excellent client satisfaction',
-        'Maintained and updated existing client websites'
-      ],
       technologies: ['React', 'Node.js', 'Python', 'MongoDB', 'UI/UX Design', 'Deployment'],
       certificate: null
     },
@@ -91,14 +54,6 @@ const Experience = () => {
       duration: '6/7 - Tung Tung Tung Sahur',
       type: 'Part-Time',
       description: 'Achieved an uncanny mastery of internet culture through relentless, dedicated research. A walking encyclopedia of niche meme references, ironic lore, and obscure online moments that most humans would need a 3-hour explainer thread to understand.',
-      responsibilities: [
-        'Maintained real-time awareness of emerging meme formats across platforms',
-        'Identified viral trends within milliseconds of inception',
-        'Decoded layered irony, deep-cut references, and niche community in-jokes instantly',
-        'Cross-referenced lore from completely unrelated corners of the internet',
-        'Documented the entire arc from 6/7 to Tung Tung Tung Sahur with zero gaps',
-        'Provided timely meme reactions in group chats, significantly boosting morale'
-      ],
       technologies: ['Brainrot', 'Sigma Mindset', 'Deep Lore', 'Irony Poisoning', 'Scroll Velocity', 'Peak Comedy'],
       certificate: null,
       funny: true
@@ -147,7 +102,6 @@ const Experience = () => {
                   <span className="timeline-dot" aria-hidden="true" />
 
                   <div className="exp-inner">
-                    {/* Header */}
                     <div className="exp-header">
                       <div className="exp-header-left">
                         <h3 className="position">{job.position}</h3>
@@ -160,17 +114,6 @@ const Experience = () => {
                     </div>
 
                     <p className="exp-description">{job.description}</p>
-
-                    <div className="exp-block">
-                      <h5 className="exp-block-title">
-                        {job.funny ? 'Core Competencies' : 'Key Responsibilities'}
-                      </h5>
-                      <ul className="resp-list">
-                        {job.responsibilities.map((resp, idx) => (
-                          <li key={idx}>{resp}</li>
-                        ))}
-                      </ul>
-                    </div>
 
                     <div className="exp-block">
                       <h5 className="exp-block-title">
