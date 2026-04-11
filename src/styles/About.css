@@ -17,7 +17,7 @@
   gap: 3rem;
 }
 
-/* INTRO */
+/* ── INTRO ─────────────────────────────────────────────────── */
 .about-intro {
   animation: fadeInUp 0.8s ease;
 }
@@ -29,7 +29,6 @@
   align-items: center;
 }
 
-/* 🔥 IMAGE POP + CIRCLE */
 .about-image {
   width: 100%;
 }
@@ -37,7 +36,7 @@
 .about-image img {
   width: 280px;
   height: 280px;
-  border-radius: 50%; /* Circle */
+  border-radius: 50%;
   object-fit: cover;
   display: block;
   margin: 0 auto;
@@ -50,22 +49,18 @@
   box-shadow: 0 20px 45px rgba(255, 105, 180, 0.25);
 }
 
-/* SVG HEADING */
 .hey-svg {
   width: 120px;
   margin-bottom: 1rem;
 }
 
-/* CLEAN FONT FOR DESCRIPTION */
 .intro-text p {
   font-size: 1.05rem;
   line-height: 1.75;
   color: #444;
   margin-bottom: 1rem;
-
-  /* Clean normal font */
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400; /* normal weight */
+  font-weight: 400;
   letter-spacing: 0.2px;
 }
 
@@ -80,7 +75,7 @@
   font-weight: 700;
 }
 
-/* SECTION TITLE */
+/* ── SUBSECTION TITLES ──────────────────────────────────────── */
 .subsection-title {
   font-size: 2rem;
   margin-bottom: 2rem;
@@ -94,7 +89,7 @@
   text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.4);
 }
 
-/* HOBBIES */
+/* ── HOBBIES ────────────────────────────────────────────────── */
 .hobbies-section {
   animation: fadeInUp 1s ease;
 }
@@ -114,7 +109,6 @@
   transform: translateY(-5px);
 }
 
-/* Dimmed pink */
 .hobby-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -136,67 +130,206 @@
   color: #ccc;
 }
 
-/* JOURNEY */
+/* ── JOURNEY ────────────────────────────────────────────────── */
 .journey-section {
   animation: fadeInUp 1.4s ease;
 }
 
-.journey-card {
-  padding: 2rem;
+/* Plain div styled as a card — no overflow:hidden clipping */
+.journey__card {
+  background: #fff;
+  border: 1px solid rgba(255, 105, 180, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(255, 105, 180, 0.06);
+  overflow: visible;
+  /* Generous padding all round; extra left padding = dot column */
+  padding: 2rem 2rem 2rem 3rem;
 }
 
-.timeline {
+.dark-mode .journey__card {
+  background: #1e1e1e;
+  border-color: rgba(255, 105, 180, 0.12);
+}
+
+/*
+  How the timeline column maths works
+  ─────────────────────────────────────
+  .journey__card   padding-left: 3rem  (48px)
+  .journey__timeline  margin-left: 0, position: relative
+  
+  The ::before line is drawn at left: 0 inside .journey__timeline,
+  which is 48px from the card edge — sitting in the left gutter.
+
+  Each .journey__item also has position:relative.
+  .journey__dot uses left: -1.25rem (-20px):
+    → sits 20px to the LEFT of the item's left edge
+    → item left edge = timeline left edge (no extra indent)
+    → so dot left edge = timeline left - 20px = inside the 48px gutter ✓
+    → dot center = -20 + 7 = -13px from timeline left edge
+    → line is at left:0, dot center at -13px — close enough for visual alignment,
+       tweak left on ::before to -13px to center-align if needed.
+
+  Text content starts at x=0 of the timeline = 48px from card edge.
+  Dot is at x=-20px of timeline = 28px from card edge.
+  Line at x=-13px of timeline = 35px from card edge.
+  Everything is inside the card, nothing is clipped.
+*/
+.journey__timeline {
   position: relative;
-  padding-left: 2rem;
 }
 
-.timeline::before {
+/* Vertical line — centered behind the dots */
+.journey__timeline::before {
   content: '';
   position: absolute;
-  left: calc(-2.6rem + 6px);
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, #ffc0cb, #ff69b4);
+  left: -13px;    /* aligns with dot centers (dot left=-20px, dot width=14px, center=-20+7=-13) */
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  border-radius: 99px;
+  background: linear-gradient(180deg, #ffc0cb 0%, #ff69b4 100%);
 }
 
-.timeline-item {
+.journey__item {
   position: relative;
   margin-bottom: 2rem;
 }
 
-.timeline-item:last-child {
+.journey__item:last-child {
   margin-bottom: 0;
 }
 
-.timeline-dot {
+/*
+  Dot sits in the left gutter of .journey__card's padding.
+  left: -1.25rem = -20px from the text column's left edge.
+  This keeps the dot fully inside the card (28px from card edge)
+  and well clear of the text (20px gap before "S" in "Started...").
+*/
+.journey__dot {
   position: absolute;
-  left: -2.6rem;
-  top: 0.3rem;
-  width: 15px;
-  height: 15px;
+  left: -1.25rem;   /* -20px: in the gutter, not touching text */
+  top: 4px;
+  width: 14px;
+  height: 14px;
   background: #ff69b4;
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.15);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.3);
+  z-index: 1;
 }
 
-.timeline-content h3 {
-  font-size: 1.3rem;
+.dark-mode .journey__dot {
+  border-color: #1e1e1e;
+  box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.25);
+}
+
+.journey__content h3 {
+  font-size: 1.1rem;
   color: #e0559f;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
   font-weight: 600;
+  line-height: 1.3;
 }
 
-.timeline-content p {
+.journey__content p {
   color: #666;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  margin: 0;
 }
 
-.dark-mode .timeline-content p {
+.dark-mode .journey__content p {
   color: #ccc;
 }
 
-/* RESPONSIVE */
+/* ── SEE MORE + ARROW ───────────────────────────────────────── */
+.about-cta {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+/*
+  cta-wrapper: positions the button and the arrow together.
+  The arrow sits to the right of the button, pulled up ~1cm (≈10px).
+  position:relative on the wrapper lets us absolutely position the arrow
+  relative to the button group.
+*/
+.cta-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.see-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem 2rem;
+  font-size: 0.97rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #FF69B4;
+  background: transparent;
+  border: 2px solid #FF69B4;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.22s ease, background 0.22s ease,
+              box-shadow 0.22s ease, transform 0.22s ease;
+  white-space: nowrap;
+}
+
+.see-more-btn:hover {
+  background: #FF69B4;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(255, 105, 180, 0.28);
+  transform: translateY(-2px);
+}
+
+.see-more-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.dark-mode .see-more-btn {
+  color: #FF69B4;
+  border-color: #FF69B4;
+}
+
+.dark-mode .see-more-btn:hover {
+  background: #FF69B4;
+  color: #fff;
+}
+
+/*
+  Arrow SVG — placed to the right of the button.
+  margin-left: 12px keeps a small gap from the button.
+  transform: translateY(-10px) lifts it ~1cm upward.
+  Width is kept modest so it doesn't overpower the button.
+*/
+.cta-arrow {
+  width: 48px;
+  height: auto;
+  margin-left: 0;
+  margin-right: 12px;
+  transform: translateY(-10px);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* ── ANIMATIONS ─────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .intro-with-image {
     grid-template-columns: 1fr;
@@ -217,7 +350,13 @@
     font-size: 1.8rem;
   }
 
-  .timeline {
-    padding-left: 1.5rem;
+  .see-more-btn {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.6rem;
+  }
+
+  .cta-arrow {
+    width: 36px;
+    transform: translateY(-8px);
   }
 }

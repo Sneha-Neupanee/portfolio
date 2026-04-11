@@ -16,19 +16,18 @@
   text-align: center;
 }
 
-/* ── "My Skills" label ─────────────────────────────────────── */
+/* ── "My Skills" label row ─────────────────────────────────── */
 .pp-section-label {
   display: flex;
   align-items: center;
   gap: 1.4rem;
   width: 100%;
   margin-bottom: 4.5rem;
-
-  /* removed scroll animation */
   opacity: 1;
   transform: none;
 }
 
+/* decorative shimmer lines */
 .pp-label-line {
   flex: 1;
   height: 2px;
@@ -38,13 +37,19 @@
   overflow: hidden;
 }
 
-/* shimmer animation stays (only decorative, not scroll-based) */
 .pp-label-line::after {
   content: '';
   position: absolute;
-  top: 0; left: -60%;
-  width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  top: 0;
+  left: -60%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
   animation: ppShimmer 2.4s ease-in-out infinite;
 }
 
@@ -53,14 +58,32 @@
   100% { left: 120%; }
 }
 
-.pp-label-text {
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #FF69B4;
+/* ── "My Skills" main title ────────────────────────────────── */
+.pp-section-main-title {
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0;
   white-space: nowrap;
+  color: #111;
+  position: relative;
+  flex-shrink: 0;
 }
+
+/* soft pink underline glow */
+.pp-section-main-title::after {
+  content: '';
+  display: block;
+  width: 55%;
+  height: 3px;
+  margin: 0.3rem auto 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, transparent, #FF69B4, transparent);
+  opacity: 0.55;
+}
+
+.dark-mode .pp-section-main-title { color: #f5f5f5; }
 
 /* ── Skill block ───────────────────────────────────────────── */
 .pp-skill-block {
@@ -69,37 +92,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* removed scroll animation */
   opacity: 1;
   transform: none;
 }
 
-/* heading row */
+/* heading row — number + title side by side */
 .pp-skill-heading-row {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.9rem;
   margin-bottom: 2.8rem;
 }
 
 .pp-skill-number {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: #FF69B4;
-  opacity: 0.75;
-  padding-top: 0.2rem;
+  opacity: 0.7;
+  padding-top: 0.3rem;
   flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 .pp-skill-title {
-  font-size: 2.4rem;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
   font-weight: 800;
   line-height: 1.15;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  color: #111;
 }
 
 .dark-mode .pp-skill-title { color: #f0f0f0; }
@@ -110,7 +133,7 @@
 .pp-3d-space {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   margin-bottom: 2rem;
 }
@@ -132,16 +155,22 @@
 
 .dark-mode .pp-skill-desc { color: #aaa; }
 
-/* ── Animated divider (kept, not scroll-based) ─────────────── */
+/* ── Animated divider ──────────────────────────────────────── */
 .pp-divider {
   width: 100%;
   height: 3px;
   border-radius: 99px;
-  background: linear-gradient(90deg, transparent, #FFB6C1 30%, #FF69B4 50%, #FFB6C1 70%, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #FFB6C1 30%,
+    #FF69B4 50%,
+    #FFB6C1 70%,
+    transparent
+  );
   background-size: 200% 100%;
   animation: ppDividerFlow 3s ease-in-out infinite;
   opacity: 0.55;
-  position: relative;
 }
 
 @keyframes ppDividerFlow {
@@ -159,12 +188,13 @@
   margin-bottom: 2.8rem;
 }
 
-/* Backend two projects row, slightly wider, smaller gap, still row */
+/* Backend two-col — wider cards, comfortable gap */
 .pp-projects-grid.pp-two-col {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 400px)); /* slightly wider */
+  grid-template-columns: repeat(2, minmax(0, 460px));
   justify-content: center;
-  gap: 1rem; /* slightly smaller gap */
+  gap: 1.6rem;
+  margin-bottom: 2.8rem;
 }
 
 /* ── Project card ─────────────────────────────────────────── */
@@ -176,12 +206,10 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-
-  /* removed scroll animation */
   opacity: 1;
   transform: none;
-
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .pp-project-card:hover {
@@ -200,7 +228,7 @@
 /* card image */
 .pp-card-img-wrap {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
@@ -267,7 +295,7 @@
   border-color: #4a2535;
 }
 
-/* card buttons */
+/* card action buttons */
 .pp-card-actions {
   display: flex;
   gap: 0.7rem;
@@ -281,8 +309,7 @@
   text-decoration: none;
 }
 
-/* footer */
-
+/* ── Footer CTAs ───────────────────────────────────────────── */
 .pp-footer-ctas {
   display: flex;
   gap: 1rem;
@@ -291,26 +318,21 @@
   margin-top: 4rem;
   padding-top: 3rem;
   width: 100%;
-
   border-top: none;
   position: relative;
-
   flex-direction: row;
   align-items: center;
 }
 
-/* ✨ NEW: thicker animated gradient line */
+/* animated gradient line above footer */
 .pp-footer-ctas::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 4px;
-
   border-radius: 99px;
-
   background: linear-gradient(
     90deg,
     transparent,
@@ -319,10 +341,8 @@
     #FFB6C1 75%,
     transparent
   );
-
   background-size: 200% 100%;
   animation: ppFooterLineFlow 3s ease-in-out infinite;
-
   opacity: 0.8;
 }
 
@@ -334,7 +354,7 @@
 
 .dark-mode .pp-footer-ctas { border-top-color: #2e2e2e; }
 
-/* buttons */
+/* ── Shared button styles ──────────────────────────────────── */
 .custom-btn {
   display: inline-flex;
   align-items: center;
@@ -355,42 +375,121 @@
 
 .btn-primary  { background: #111; color: #fff; border-color: #111; }
 .btn-primary:hover {
-  background: #FF69B4; border-color: #FF69B4; color: #fff;
+  background: #FF69B4;
+  border-color: #FF69B4;
+  color: #fff;
 }
 
 .btn-secondary { background: transparent; color: #111; border-color: #111; }
 .btn-secondary:hover {
-  background: #FF69B4; border-color: #FF69B4; color: #fff;
+  background: #FF69B4;
+  border-color: #FF69B4;
+  color: #fff;
 }
 
-/* ── MOBILE RESPONSIVE ADJUSTMENTS ─────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════════════════════ */
 
-/* Tablet + small desktop */
+/* Tablet / small desktop (≤ 900 px) */
 @media (max-width: 900px) {
-  .pp-projects-grid { grid-template-columns: repeat(2, 1fr); }
-  .pp-projects-grid.pp-two-col { grid-template-columns: 1fr; max-width: 420px; justify-content: center; }
+  .pp-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pp-projects-grid.pp-two-col {
+    grid-template-columns: minmax(0, 460px);
+    max-width: 460px;
+    justify-content: center;
+  }
+
   .pp-skill-title { font-size: 2rem; }
-  .pp-skill-desc { font-size: 0.98rem; }
-  .pp-3d-space { margin-bottom: 1.5rem; }
+  .pp-skill-desc  { font-size: 0.98rem; }
+  .pp-3d-space    { margin-bottom: 1.5rem; }
+
   .pp-footer-ctas { flex-direction: column; align-items: center; }
 }
 
-/* Mobile */
+/* Mobile (≤ 600 px) */
 @media (max-width: 600px) {
-  .pp-skill-title { font-size: 1.8rem; }
-  .pp-skill-number { font-size: 1rem; }
-  .pp-skill-desc { font-size: 0.95rem; line-height: 1.6; padding: 0 1rem; }
-  .pp-projects-grid { grid-template-columns: 1fr; max-width: 100%; margin: 0 auto 2.8rem; gap: 1.5rem; }
-  .pp-project-card { font-size: 0.9rem; }
-  .pp-card-body { padding: 1rem 1rem 1.2rem; }
-  .pp-card-title { font-size: 0.95rem; }
-  .pp-card-desc { font-size: 0.8rem; }
-  .pp-tech-badge { font-size: 0.65rem; padding: 0.18rem 0.5rem; }
+  .pp-skills-section {
+    padding: 3.5rem 1.2rem 4rem;
+  }
 
-  .pp-footer-ctas { flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
+  .pp-section-label {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+  }
 
-  .pp-3d-space { margin-bottom: 1rem; }
-  .pp-section-label { flex-direction: column; gap: 0.7rem; margin-bottom: 3rem; }
-  .pp-label-text { font-size: 0.9rem; letter-spacing: 0.18em; }
-  .pp-label-line { height: 1.5px; }
-} 
+  .pp-label-line {
+    flex: 0 0 60px;
+    height: 1.5px;
+  }
+
+  .pp-section-main-title {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .pp-skill-heading-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .pp-skill-title  { font-size: clamp(1.5rem, 7vw, 1.9rem); }
+  .pp-skill-number { font-size: 0.95rem; }
+
+  .pp-skill-desc {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    padding: 0 0.5rem;
+  }
+
+  .pp-3d-space {
+    gap: 6px !important;
+    margin-bottom: 1rem;
+    align-items: flex-start !important;
+  }
+
+  /* Single-column project grids on mobile */
+  .pp-projects-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin: 0 auto 2.4rem;
+    gap: 1.4rem;
+  }
+
+  .pp-projects-grid.pp-two-col {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .pp-project-card {
+    font-size: 0.9rem;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .pp-card-body    { padding: 1rem 1rem 1.2rem; }
+  .pp-card-title   { font-size: 0.95rem; }
+  .pp-card-desc    { font-size: 0.8rem; }
+  .pp-tech-badge   { font-size: 0.65rem; padding: 0.18rem 0.5rem; }
+
+  .pp-footer-ctas {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* Extra-small (≤ 400 px) */
+@media (max-width: 400px) {
+  .pp-section-main-title { font-size: 1.6rem; }
+  .pp-skill-title        { font-size: 1.35rem; }
+}

@@ -1,11 +1,13 @@
+/* ─────────────────────────────────────────────
+   Experience Page
+───────────────────────────────────────────── */
 .experience-page {
   padding: 2rem;
-  animation: fadeIn 0.6s ease;
-  position: relative;
+  animation: fadeIn 0.5s ease;
 }
 
 .experience-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -16,380 +18,640 @@
   margin-bottom: 4rem;
 }
 
+/* ─── Section Titles ─────────────────────────── */
 .subsection-title {
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  background: linear-gradient(135deg, #FFB6C1, #FF69B4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  gap: 0.7rem;
+  color: #c9809c;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/* FIX: Override transparent text fill so the icon is visible and not blurred */
 .section-icon {
-  font-size: 2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  -webkit-text-fill-color: #FF69B4;
-  /* Override parent's transparent fill */
-  color: #FF69B4;
-  filter: none;
+  font-size: 1rem;
+  color: #c9809c;
+  -webkit-text-fill-color: #c9809c;
   flex-shrink: 0;
-  /* Symbol styling — works with Unicode symbols like ◈ ◉ ★ ⬡ */
-  font-style: normal;
-  font-weight: 900;
-  line-height: 1;
 }
 
-/*
-  ─────────────────────────────────────────────────────────────
-  REPLACE EMOJIS IN YOUR HTML/JSX with these Unicode symbols:
-
-  Work Experience  →  ◈  (U+25C8)
-  Education        →  ◉  (U+25C9)
-  Certifications   →  ★  (U+2605)
-  Achievements     →  ◆  (U+25C6)
-
-  Example JSX:
-    <span className="section-icon">◈</span>
-    <span className="section-icon">◉</span>
-    <span className="section-icon">★</span>
-    <span className="section-icon">◆</span>
-  ─────────────────────────────────────────────────────────────
-*/
-
-.experience-timeline,
-.education-timeline {
+/* ─── Timeline wrapper ───────────────────────── */
+.experience-timeline {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+  /* left room for the vertical line + dot */
+  padding-left: 36px;
 }
 
-.experience-card,
-.education-card {
-  animation: fadeInUp 0.6s ease forwards;
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 16px;
+  bottom: 16px;
+  width: 1.5px;
+  background: linear-gradient(180deg, #f0bece 0%, #e8a0bc 60%, transparent 100%);
+}
+
+/* ─── Scroll-reveal ──────────────────────────── */
+.timeline-item {
   opacity: 0;
-  position: relative;
-  padding-left: 2rem;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.experience-card::before,
-.education-card::before {
+.timeline-item--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Dot on the line ────────────────────────── */
+.timeline-dot {
+  position: absolute;
+  left: -27px;          /* pulls dot out of .exp-inner to sit on the line */
+  top: 22px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #d98fa8;
+  box-shadow: 0 0 0 3px rgba(217, 143, 168, 0.2);
+  flex-shrink: 0;
+}
+
+/* ─── Experience Card ────────────────────────── */
+.experience-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #f0d4e0;
+  border-radius: 16px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  overflow: hidden;
+}
+
+.experience-card:hover {
+  border-color: #d98fa8;
+  box-shadow: 0 6px 28px rgba(217, 143, 168, 0.14);
+  transform: translateY(-2px);
+}
+
+.dark-mode .experience-card {
+  background: #1c1c1e;
+  border-color: #3a2530;
+}
+
+.dark-mode .experience-card:hover {
+  border-color: #c47894;
+  box-shadow: 0 6px 28px rgba(196, 120, 148, 0.12);
+}
+
+/* Subtle left accent stripe */
+.experience-card::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, #FFB6C1, #FF69B4);
-  border-radius: 2px;
+  width: 3px;
+  background: linear-gradient(180deg, #f4c8d8, #d98fa8);
+  border-radius: 16px 0 0 16px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
-.experience-header {
+.experience-card:hover::before {
+  opacity: 1;
+}
+
+.experience-card--funny {
+  border-style: dashed;
+  border-color: #f0d4e0;
+}
+
+.experience-card--funny::after {
+  content: '* self-reported';
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 0.72rem;
+  color: #cca0b4;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Inner content wrapper (provides the left padding) ──────── */
+.exp-inner {
+  padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+}
+
+/* ─── Card header ────────────────────────────── */
+.exp-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
   gap: 1rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.exp-header-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.exp-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .position {
-  font-size: 1.5rem;
-  color: #FF69B4;
-  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  color: #c47894;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+}
+
+.dark-mode .position {
+  color: #e0aac0;
 }
 
 .company {
-  font-size: 1.2rem;
-  color: #2C2C2C;
-  font-weight: 600;
-}
-
-.dark-mode .company {
-  color: #FFFFFF;
-}
-
-.experience-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.3rem;
-}
-
-.duration,
-.location {
-  background: rgba(255, 182, 193, 0.2);
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 0.98rem;
+  color: #333;
   font-weight: 500;
 }
 
-.dark-mode .duration,
-.dark-mode .location {
-  color: #ccc;
-  background: rgba(255, 182, 193, 0.1);
+.dark-mode .company {
+  color: #ddd;
 }
 
-.experience-description {
-  font-size: 1rem;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+/* ─── Badges ─────────────────────────────────── */
+.duration-badge {
+  background: rgba(217, 143, 168, 0.1);
+  padding: 0.22rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #a07080;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
-.dark-mode .experience-description {
-  color: #ccc;
+.dark-mode .duration-badge {
+  color: #c8a0b0;
+  background: rgba(217, 143, 168, 0.08);
 }
 
-.responsibilities,
-.achievements {
-  margin-bottom: 1.5rem;
+.type-badge {
+  background: rgba(217, 143, 168, 0.08);
+  color: #c47894;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  border: 1px solid rgba(196, 120, 148, 0.22);
+  white-space: nowrap;
 }
 
-.responsibilities h5,
-.achievements h5,
-.technologies-used h5 {
-  font-size: 1.1rem;
-  color: #FF69B4;
-  margin-bottom: 0.8rem;
+.dark-mode .type-badge {
+  color: #dda8be;
+  border-color: rgba(221, 168, 190, 0.28);
 }
 
-.responsibilities ul,
-.achievements ul {
+.type-badge--funny {
+  font-style: italic;
+}
+
+/* ─── Description ────────────────────────────── */
+.exp-description {
+  font-size: 0.93rem;
+  color: #707070;
+  line-height: 1.72;
+  margin-bottom: 1.1rem;
+}
+
+.dark-mode .exp-description {
+  color: #aaa;
+}
+
+/* ─── Blocks (responsibilities / tech) ───────── */
+.exp-block {
+  margin-bottom: 1.1rem;
+}
+
+.exp-block:last-of-type {
+  margin-bottom: 0;
+}
+
+.exp-block-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #c47894;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+
+/* ─── Responsibility list ────────────────────── */
+.resp-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.responsibilities li,
-.achievements li {
-  padding-left: 1.5rem;
+.resp-list li {
   position: relative;
-  margin-bottom: 0.5rem;
+  padding-left: 1.2rem;
+  margin-bottom: 0.38rem;
+  font-size: 0.9rem;
   color: #666;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-.dark-mode .responsibilities li,
-.dark-mode .achievements li {
-  color: #ccc;
+.dark-mode .resp-list li {
+  color: #bbb;
 }
 
-.responsibilities li::before,
-.achievements li::before {
-  content: '▹';
+.resp-list li::before {
+  content: '▸';
   position: absolute;
   left: 0;
-  color: #FF69B4;
-  font-weight: bold;
-  font-size: 1.2rem;
+  top: 0.05em;
+  color: #d98fa8;
+  font-size: 0.82rem;
 }
 
-.technologies-used {
-  margin-top: 1.5rem;
-}
-
+/* ─── Tech tags ──────────────────────────────── */
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .tech-tag {
-  background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 105, 180, 0.2));
-  color: #FF69B4;
-  padding: 0.4rem 0.9rem;
-  border-radius: 15px;
-  font-size: 0.85rem;
+  background: rgba(217, 143, 168, 0.09);
+  color: #c47894;
+  padding: 0.28rem 0.72rem;
+  border-radius: 20px;
+  font-size: 0.79rem;
   font-weight: 600;
-  border: 1px solid rgba(255, 105, 180, 0.3);
+  border: 1px solid rgba(196, 120, 148, 0.18);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: rgba(217, 143, 168, 0.18);
+  border-color: rgba(196, 120, 148, 0.35);
 }
 
 .dark-mode .tech-tag {
-  background: rgba(255, 105, 180, 0.1);
-  border-color: rgba(255, 105, 180, 0.4);
+  background: rgba(196, 120, 148, 0.09);
+  color: #dda8be;
+  border-color: rgba(221, 168, 190, 0.22);
+}
+
+.tech-tag--funny {
+  font-style: italic;
+}
+
+/* ─── Cert button inside card ────────────────── */
+.exp-cert-row {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(217, 143, 168, 0.28);
+}
+
+.cert-view-btn--card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 1rem;
+  border: 1px solid rgba(196, 120, 148, 0.35);
+  border-radius: 20px;
+  background: transparent;
+  color: #c47894;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.cert-view-btn--card:hover {
+  background: rgba(217, 143, 168, 0.1);
+  border-color: #c47894;
+}
+
+.cert-btn-icon {
+  font-size: 0.65rem;
+  color: #d98fa8;
+}
+
+/* ─── Education ──────────────────────────────── */
+.education-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.education-card {
+  border-left: 3px solid #f0c8d8 !important;
+  padding-left: 1.25rem;
 }
 
 .education-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+  align-items: flex-start;
   flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .degree {
-  font-size: 1.4rem;
-  color: #FF69B4;
+  font-size: 1.15rem;
+  color: #c47894;
+  font-weight: 700;
   flex: 1;
+  line-height: 1.35;
 }
 
 .institution {
-  font-size: 1.1rem;
-  color: #2C2C2C;
-  margin-bottom: 1rem;
+  font-size: 0.98rem;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
 }
 
 .dark-mode .institution {
-  color: #FFFFFF;
+  color: #eee;
 }
 
-.education-description {
-  font-size: 1rem;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.dark-mode .education-description {
-  color: #ccc;
-}
-
+/* ─── Certifications ─────────────────────────── */
 .certifications-card {
-  animation: fadeInUp 0.8s ease;
+  animation: fadeInUp 0.7s ease;
 }
 
 .certifications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.1rem;
 }
 
 .certification-item {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 0.9rem;
   padding: 1rem;
-  background: rgba(255, 182, 193, 0.1);
-  border-radius: 15px;
-  transition: all 0.3s ease;
+  background: rgba(217, 143, 168, 0.06);
+  border-radius: 12px;
+  border: 1px solid rgba(217, 143, 168, 0.14);
+  transition: all 0.22s ease;
   animation: fadeInUp 0.6s ease forwards;
   opacity: 0;
 }
 
 .certification-item:hover {
-  transform: translateX(10px);
-  background: rgba(255, 182, 193, 0.2);
+  background: rgba(217, 143, 168, 0.11);
+  border-color: rgba(196, 120, 148, 0.28);
+  transform: translateY(-2px);
 }
 
-/* FIX: cert-icon also needs explicit color — no emoji, use Unicode symbols */
-.cert-icon {
-  font-size: 2rem;
+.cert-icon-mark {
+  font-size: 0.85rem;
+  color: #d98fa8;
+  -webkit-text-fill-color: #d98fa8;
+  margin-top: 0.15rem;
   flex-shrink: 0;
-  color: #FF69B4;
-  -webkit-text-fill-color: #FF69B4;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  line-height: 1;
 }
-
-/*
-  Replace cert-icon emojis in your HTML/JSX with Unicode symbols, e.g.:
-    <span className="cert-icon">◆</span>
-    <span className="cert-icon">★</span>
-    <span className="cert-icon">◈</span>
-*/
 
 .cert-info h4 {
-  font-size: 1.1rem;
-  color: #2C2C2C;
-  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+  color: #2c2c2c;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
 }
 
 .dark-mode .cert-info h4 {
-  color: #FFFFFF;
+  color: #eee;
 }
 
 .cert-info p {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.3rem;
+  font-size: 0.83rem;
+  color: #888;
+  margin-bottom: 0.2rem;
 }
 
 .dark-mode .cert-info p {
-  color: #ccc;
+  color: #aaa;
 }
 
 .cert-year {
-  font-size: 0.85rem;
-  color: #FF69B4;
+  font-size: 0.78rem;
+  color: #c47894;
   font-weight: 600;
+  display: block;
+  margin-bottom: 0.55rem;
 }
 
+.cert-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.28rem 0.8rem;
+  border: 1px solid rgba(196, 120, 148, 0.32);
+  border-radius: 20px;
+  background: transparent;
+  color: #c47894;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cert-view-btn:hover {
+  background: rgba(217, 143, 168, 0.1);
+  border-color: #c47894;
+}
+
+/* ─── Quick Stats ────────────────────────────── */
 .achievements-banner {
   text-align: center;
   padding: 2.5rem;
-  background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 105, 180, 0.15));
-  animation: fadeInUp 1s ease;
+  background: linear-gradient(135deg, rgba(217, 143, 168, 0.07), rgba(244, 200, 216, 0.1));
+  animation: fadeInUp 0.9s ease;
 }
 
 .achievements-banner h3 {
-  font-size: 2rem;
-  color: #FF69B4;
+  font-size: 1.5rem;
+  color: #c47894;
   margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 2rem;
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .stat-number {
-  font-size: 3rem;
+  font-size: 2.75rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #FFB6C1, #FF69B4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #d98fa8;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .stat-label {
-  font-size: 1rem;
-  color: #666;
+  font-size: 0.82rem;
+  color: #999;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
 }
 
 .dark-mode .stat-label {
-  color: #ccc;
+  color: #aaa;
+}
+
+/* ─── Certificate Modal ──────────────────────── */
+.cert-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  animation: fadeIn 0.18s ease;
+  backdrop-filter: blur(4px);
+}
+
+.cert-modal {
+  background: #fff;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 88vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: slideUp 0.22s ease;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+}
+
+.dark-mode .cert-modal {
+  background: #1c1c1e;
+  border: 1px solid #3a2530;
+}
+
+.cert-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(217, 143, 168, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #c47894;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.cert-modal-close:hover {
+  background: rgba(217, 143, 168, 0.22);
+}
+
+.cert-modal-title {
+  font-size: 1.15rem;
+  color: #c47894;
+  font-weight: 700;
+  padding: 1.5rem 1.5rem 0.25rem;
+}
+
+.cert-modal-provider {
+  font-size: 0.84rem;
+  color: #999;
+  padding: 0 1.5rem 1rem;
+  border-bottom: 1px solid #f0d4e0;
+}
+
+.dark-mode .cert-modal-provider {
+  border-bottom-color: #3a2530;
+}
+
+.cert-modal-img {
+  width: 100%;
+  flex: 1;
+  object-fit: contain;
+  max-height: 65vh;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.cert-modal-pdf {
+  width: 100%;
+  flex: 1;
+  min-height: 500px;
+  border: none;
+}
+
+/* ─── Keyframes ──────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
-  .experience-header {
-    flex-direction: column;
+  .experience-timeline {
+    padding-left: 28px;
   }
 
-  .experience-meta {
+  .timeline-dot {
+    left: -22px;
+  }
+
+  .exp-header {
+    flex-direction: column;
     align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .exp-header-right {
+    justify-content: flex-start;
   }
 
   .certifications-grid {
@@ -401,6 +663,10 @@
   }
 
   .subsection-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .experience-card--funny::after {
+    display: none;
   }
 }

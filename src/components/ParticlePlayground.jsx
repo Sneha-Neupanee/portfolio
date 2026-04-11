@@ -4,10 +4,6 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, useAnimations } from "@react-three/drei";
 import "../styles/ParticlePlayground.css";
 import demoSvg from "../assets/demo.svg";
-import okSvg from "../assets/ok.svg";
-import skillsSvg from "../assets/skills.svg";
-import frontSvg from "../assets/front.svg";
-import backSvg from "../assets/back.svg";
 
 /* ─── 3D Model ───────────────────────── */
 function Model({ path }) {
@@ -53,7 +49,7 @@ const FRONTEND_PROJECTS = [
     name: "Dr. Priyanka's Clinic",
     image: "/drpriyanka.png",
     link: "https://drpriyankasclinic.com/",
-    desc: "A clean, trust-building website for a medical clinic appointment info, services, and a welcoming patient experience.",
+    desc: "A clean, trust-building website for a medical clinic — appointment info, services, and a welcoming patient experience.",
   },
   {
     id: 2,
@@ -125,7 +121,8 @@ function useReveal() {
 /* ─── Project card ───────────────────────────────────────────── */
 const ProjectCard = ({ project, index, windowWidth, isBackend }) => {
   const [ref, visible] = useReveal();
-  const desktopWidth = windowWidth >= 1200 ? (isBackend ? 280 : 260) : 48 + "%"; // slightly wider for backend
+  const desktopWidth =
+    windowWidth >= 1200 ? (isBackend ? 380 : 260) : "48%";
   const cardWidth = windowWidth < 768 ? "90%" : desktopWidth;
 
   return (
@@ -191,8 +188,8 @@ const ParticlePlayground = () => {
   const navigate = useNavigate();
   const [headerRef, headerVisible] = useReveal();
   const [threeDRef, threeDVisible] = useReveal();
-  const [feRef, feVisible] = useReveal();
-  const [beRef, beVisible] = useReveal();
+  const [feRef, feVisible]         = useReveal();
+  const [beRef, beVisible]         = useReveal();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -203,49 +200,44 @@ const ParticlePlayground = () => {
 
   const isMobile = windowWidth < 768;
 
-  const canvasWidth = isMobile ? windowWidth * 0.45 : 400;
-  const canvasHeight = isMobile ? windowWidth * 0.55 : 500;
+  // Bigger canvas on mobile so the model feels present
+  const canvasWidth  = isMobile ? Math.min(windowWidth * 0.62, 320) : 400;
+  const canvasHeight = isMobile ? Math.min(windowWidth * 0.72, 380) : 500;
+
+  // demo.svg scales proportionally beside the canvas
+  const demoImgWidth = isMobile ? 100 : 180;
+
+  // Push demo.svg up ~1.5–2 cm on mobile (-45px), keep desktop at +15px
+  const demoMarginTop = isMobile ? "-15px" : "15px";
 
   return (
     <section className="pp-skills-section">
+
+      {/* ── "My Skills" heading ── */}
       <div
         ref={headerRef}
         className={`pp-section-label ${headerVisible ? "pp-visible" : ""}`}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "16px",
-          flexWrap: "wrap",
-        }}
       >
         <span className="pp-label-line" />
-        <img
-          src={skillsSvg}
-          alt="My Skills"
-          style={{ width: isMobile ? "160px" : "220px", height: "auto" }}
-        />
+        <h1 className="pp-section-main-title">
+          My <span className="pp-pink">Skills</span>
+        </h1>
         <span className="pp-label-line" />
       </div>
 
-      {/* 3D + demo section */}
+      {/* ── 01. 3D Modeling & Animation ── */}
       <div
         ref={threeDRef}
         className={`pp-skill-block ${threeDVisible ? "pp-visible" : ""}`}
       >
         <div className="pp-skill-heading-row">
-          <img
-            src={okSvg}
-            alt="3D Modeling & Animation"
-            style={{
-              width: isMobile ? "280px" : "420px",
-              height: "auto",
-              display: "block",
-              marginTop: isMobile ? "-10px" : "-30px",
-            }}
-          />
+          <span className="pp-skill-number">01.</span>
+          <h2 className="pp-skill-title">
+            3D Modeling <span className="pp-pink">&amp;</span> Animation
+          </h2>
         </div>
 
+        {/* Canvas + demo.svg side by side */}
         <div
           className="pp-3d-space"
           style={{
@@ -253,17 +245,23 @@ const ParticlePlayground = () => {
             flexDirection: "row",
             alignItems: "flex-start",
             justifyContent: "center",
-            gap: isMobile ? "12px" : "24px",
+            gap: isMobile ? "8px" : "24px",
           }}
         >
           <ModelViewer width={canvasWidth} height={canvasHeight} />
-          <div style={{ marginTop: isMobile ? "-10px" : "15px", flexShrink: 0 }}>
-            {/* moved demo down by ~1.5cm */}
+
+          {/* demo.svg — nudged up on mobile, normal on desktop */}
+          <div
+            style={{
+              marginTop: demoMarginTop,
+              flexShrink: 0,
+            }}
+          >
             <img
               src={demoSvg}
               alt="demo"
               style={{
-                width: isMobile ? "120px" : "180px",
+                width: demoImgWidth,
                 height: "auto",
                 display: "block",
               }}
@@ -273,31 +271,26 @@ const ParticlePlayground = () => {
 
         <div className="pp-skill-desc-row">
           <p className="pp-skill-desc">
-            I use <strong>Blender</strong> to sculpt, rig, and animate 3D models
-            from character design to product visualisation. My workflow covers
-            full scene lighting, material shading, and render-ready exports that
-            embed seamlessly into web experiences.
+            I use <strong>Blender</strong> to sculpt, rig, and animate 3D
+            models from character design to product visualisation. My workflow
+            covers full scene lighting, material shading, and render-ready
+            exports that embed seamlessly into web experiences.
           </p>
         </div>
       </div>
 
       <div className="pp-divider" />
 
-      {/* Frontend projects */}
+      {/* ── 02. Front-end & UI/UX ── */}
       <div
         ref={feRef}
         className={`pp-skill-block ${feVisible ? "pp-visible" : ""}`}
       >
         <div className="pp-skill-heading-row">
-          <img
-            src={frontSvg}
-            alt="Front-end & UI/UX"
-            style={{
-              width: isMobile ? "260px" : "380px",
-              height: "auto",
-              display: "block",
-            }}
-          />
+          <span className="pp-skill-number">02.</span>
+          <h2 className="pp-skill-title">
+            Front&#8209;end <span className="pp-pink">&amp;</span> UI/UX
+          </h2>
         </div>
 
         <div
@@ -306,11 +299,16 @@ const ParticlePlayground = () => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            gap: "26px", // slightly increased gap
+            gap: "26px",
           }}
         >
           {FRONTEND_PROJECTS.map((p, i) => (
-            <ProjectCard key={p.id} project={p} index={i} windowWidth={windowWidth} />
+            <ProjectCard
+              key={p.id}
+              project={p}
+              index={i}
+              windowWidth={windowWidth}
+            />
           ))}
         </div>
 
@@ -326,32 +324,19 @@ const ParticlePlayground = () => {
 
       <div className="pp-divider" />
 
-      {/* Backend projects */}
+      {/* ── 03. Backend ── */}
       <div
         ref={beRef}
         className={`pp-skill-block ${beVisible ? "pp-visible" : ""}`}
       >
         <div className="pp-skill-heading-row">
-          <img
-            src={backSvg}
-            alt="Back-end"
-            style={{
-              width: isMobile ? "160px" : "200px",
-              height: "auto",
-              display: "block",
-            }}
-          />
+          <span className="pp-skill-number">03.</span>
+          <h2 className="pp-skill-title">
+            Back<span className="pp-pink">end</span>
+          </h2>
         </div>
 
-        <div
-          className="pp-projects-grid pp-two-col"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "10px", // slightly increased gap
-          }}
-        >
+        <div className="pp-projects-grid pp-two-col">
           {BACKEND_PROJECTS.map((p, i) => (
             <ProjectCard
               key={p.id}
@@ -372,7 +357,7 @@ const ParticlePlayground = () => {
         </div>
       </div>
 
-      {/* Footer CTAs */}
+      {/* ── Footer CTAs ── */}
       <div
         className="pp-footer-ctas"
         style={{
@@ -384,10 +369,16 @@ const ParticlePlayground = () => {
           width: "100%",
         }}
       >
-        <button className="custom-btn btn-primary" onClick={() => navigate("/projects")}>
+        <button
+          className="custom-btn btn-primary"
+          onClick={() => navigate("/projects")}
+        >
           View More Projects
         </button>
-        <button className="custom-btn btn-secondary" onClick={() => navigate("/skills")}>
+        <button
+          className="custom-btn btn-secondary"
+          onClick={() => navigate("/skills")}
+        >
           View My Skills
         </button>
       </div>

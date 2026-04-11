@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Card from '../components/Card';
 import '../styles/Experience.css';
 
+const TimelineItem = ({ children, index }) => {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`timeline-item ${visible ? 'timeline-item--visible' : ''}`}
+      style={{ transitionDelay: `${index * 0.12}s` }}
+    >
+      {children}
+    </div>
+  );
+};
+
 const Experience = () => {
+  const [certModal, setCertModal] = useState(null);
+
   const workExperience = [
     {
       id: 1,
-      position: 'Software Engineering ',
+      position: 'Full Stack Developer',
       company: 'SRIYOG Consulting',
-      duration: 'June 2024 - Present',
-      type: 'Job',
-      description: 'Worked on developing and maintaining web applications, collaborating with cross-functional teams to deliver high-quality software solutions.',
+      duration: '',
+      type: 'Full-time',
+      description: 'Developed and maintained full-stack web applications, collaborating with cross-functional teams to deliver high-quality software solutions.',
       responsibilities: [
         'Developed responsive web applications using React and modern JavaScript',
         'Collaborated with senior developers on full-stack projects',
@@ -19,10 +45,29 @@ const Experience = () => {
         'Fixed bugs and optimized application performance',
         'Wrote clean, maintainable, and well-documented code'
       ],
-      technologies: ['React', 'Node.js', 'JavaScript', 'Git', 'REST APIs', 'Agile']
+      technologies: ['React', 'Node.js', 'JavaScript', 'Git', 'REST APIs', 'Agile'],
+      certificate: { file: '/abc.jpg', type: 'image', name: 'Full Stack Developer', provider: 'SRIYOG Consulting', year: '2024' }
     },
     {
       id: 2,
+      position: 'MERN Stack Developer',
+      company: 'SCODUS Innovations',
+      duration: 'December 2025 - March 2026',
+      type: 'Full-time',
+      description: 'Worked as a MERN Stack Developer building scalable web applications and contributing to innovative digital solutions.',
+      responsibilities: [
+        'Built full-stack applications using MongoDB, Express, React, and Node.js',
+        'Designed and implemented RESTful APIs and database schemas',
+        'Collaborated with the product team to deliver feature-rich applications',
+        'Optimized front-end performance and ensured mobile responsiveness',
+        'Participated in architecture discussions and technical decision-making',
+        'Wrote unit tests and maintained code quality standards'
+      ],
+      technologies: ['MongoDB', 'Express', 'React', 'Node.js', 'JavaScript', 'Git'],
+      certificate: { file: '/abcd.pdf', type: 'pdf', name: 'MERN Stack Developer', provider: 'SCODUS Innovations', year: '2025' }
+    },
+    {
+      id: 3,
       position: 'Freelance Web Developer',
       company: 'Self-Employed',
       duration: '2022 - Present',
@@ -36,7 +81,27 @@ const Experience = () => {
         'Delivered projects on time with excellent client satisfaction',
         'Maintained and updated existing client websites'
       ],
-      technologies: ['React', 'Node.js', 'Python', 'MongoDB', 'UI/UX Design', 'Deployment']
+      technologies: ['React', 'Node.js', 'Python', 'MongoDB', 'UI/UX Design', 'Deployment'],
+      certificate: null
+    },
+    {
+      id: 4,
+      position: 'Doomscroller',
+      company: 'Instagram, TikTok & Reddit',
+      duration: '6/7 - Tung Tung Tung Sahur',
+      type: 'Part-Time',
+      description: 'Achieved an uncanny mastery of internet culture through relentless, dedicated research. A walking encyclopedia of niche meme references, ironic lore, and obscure online moments that most humans would need a 3-hour explainer thread to understand.',
+      responsibilities: [
+        'Maintained real-time awareness of emerging meme formats across platforms',
+        'Identified viral trends within milliseconds of inception',
+        'Decoded layered irony, deep-cut references, and niche community in-jokes instantly',
+        'Cross-referenced lore from completely unrelated corners of the internet',
+        'Documented the entire arc from 6/7 to Tung Tung Tung Sahur with zero gaps',
+        'Provided timely meme reactions in group chats, significantly boosting morale'
+      ],
+      technologies: ['Brainrot', 'Sigma Mindset', 'Deep Lore', 'Irony Poisoning', 'Scroll Velocity', 'Peak Comedy'],
+      certificate: null,
+      funny: true
     }
   ];
 
@@ -57,9 +122,10 @@ const Experience = () => {
   ];
 
   const certifications = [
-    { name: 'Full Stack Web Development', provider: 'Online Platform', year: '2023' },
-    { name: 'React - The Complete Guide', provider: 'Udemy', year: '2023' },
-    { name: 'Data Science & Machine Learning', provider: 'Coursera', year: '2023' }
+    { name: 'Full Stack Web Developer', provider: 'SRIYOG Consulting', year: '2024', file: '/abc.jpg', type: 'image' },
+    { name: 'MERN Stack Developer', provider: 'SCODUS Innovations', year: '2025', file: '/abcd.pdf', type: 'pdf' },
+    { name: 'React - The Complete Guide', provider: 'Udemy', year: '2023', file: null, type: null },
+    { name: 'Data Science & Machine Learning', provider: 'Coursera', year: '2023', file: null, type: null }
   ];
 
   return (
@@ -67,98 +133,126 @@ const Experience = () => {
       <div className="experience-container">
         <h1 className="section-title">Experience</h1>
 
+        {/* Work Experience */}
         <div className="experience-section">
           <h2 className="subsection-title">
-            <span className="section-icon">💼</span>
+            <span className="section-icon">&#9670;</span>
             Work Experience
           </h2>
 
           <div className="experience-timeline">
             {workExperience.map((job, index) => (
-              <Card key={job.id} className="experience-card" style={{ animationDelay: `${index * 0.2}s` }}>
-                <div className="experience-header">
-                  <div className="experience-main-info">
-                    <h3 className="position">{job.position}</h3>
-                    <h4 className="company">{job.company}</h4>
-                  </div>
-                  <div className="experience-meta">
-                    <span className="duration">{job.duration}</span>
-                    <span className="job-type">{job.type}</span>
+              <TimelineItem key={job.id} index={index}>
+                <div className={`experience-card ${job.funny ? 'experience-card--funny' : ''}`}>
+                  <span className="timeline-dot" aria-hidden="true" />
+
+                  <div className="exp-inner">
+                    {/* Header */}
+                    <div className="exp-header">
+                      <div className="exp-header-left">
+                        <h3 className="position">{job.position}</h3>
+                        <h4 className="company">{job.company}</h4>
+                      </div>
+                      <div className="exp-header-right">
+                        <span className="duration-badge">{job.duration}</span>
+                        <span className={`type-badge ${job.funny ? 'type-badge--funny' : ''}`}>{job.type}</span>
+                      </div>
+                    </div>
+
+                    <p className="exp-description">{job.description}</p>
+
+                    <div className="exp-block">
+                      <h5 className="exp-block-title">
+                        {job.funny ? 'Core Competencies' : 'Key Responsibilities'}
+                      </h5>
+                      <ul className="resp-list">
+                        {job.responsibilities.map((resp, idx) => (
+                          <li key={idx}>{resp}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="exp-block">
+                      <h5 className="exp-block-title">
+                        {job.funny ? 'Tech Stack' : 'Technologies Used'}
+                      </h5>
+                      <div className="tech-tags">
+                        {job.technologies.map((tech, idx) => (
+                          <span key={idx} className={`tech-tag ${job.funny ? 'tech-tag--funny' : ''}`}>{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {job.certificate && (
+                      <div className="exp-cert-row">
+                        <button
+                          className="cert-view-btn cert-view-btn--card"
+                          onClick={() => setCertModal(job.certificate)}
+                        >
+                          <span className="cert-btn-icon">&#9670;</span>
+                          View Certificate
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
-
-                <p className="experience-description">{job.description}</p>
-
-                <div className="responsibilities">
-                  <h5>Key Responsibilities:</h5>
-                  <ul>
-                    {job.responsibilities.map((resp, idx) => (
-                      <li key={idx}>{resp}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="technologies-used">
-                  <h5>Technologies Used:</h5>
-                  <div className="tech-tags">
-                    {job.technologies.map((tech, idx) => (
-                      <span key={idx} className="tech-tag">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              </Card>
+              </TimelineItem>
             ))}
           </div>
         </div>
 
+        {/* Education */}
         <div className="education-section">
           <h2 className="subsection-title">
-            <span className="section-icon">🎓</span>
+            <span className="section-icon">&#9675;</span>
             Education
           </h2>
 
           <div className="education-timeline">
             {education.map((edu, index) => (
-              <Card key={edu.id} className="education-card" style={{ animationDelay: `${index * 0.2}s` }}>
-                <div className="education-header">
-                  <h3 className="degree">{edu.degree}</h3>
-                  <span className="duration">{edu.duration}</span>
-                </div>
-                <h4 className="institution">{edu.institution}</h4>
-                <p className="education-description">{edu.description}</p>
-
-                <div className="achievements">
-                  <h5>Achievements:</h5>
-                  <ul>
-                    {edu.achievements.map((achievement, idx) => (
-                      <li key={idx}>{achievement}</li>
-                    ))}
-                  </ul>
-                </div>
-              </Card>
+              <TimelineItem key={edu.id} index={index}>
+                <Card className="education-card">
+                  <div className="education-header">
+                    <h3 className="degree">{edu.degree}</h3>
+                    <span className="duration-badge">{edu.duration}</span>
+                  </div>
+                  <h4 className="institution">{edu.institution}</h4>
+                  <p className="exp-description">{edu.description}</p>
+                  <div className="exp-block">
+                    <h5 className="exp-block-title">Achievements</h5>
+                    <ul className="resp-list">
+                      {edu.achievements.map((a, idx) => (
+                        <li key={idx}>{a}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </Card>
+              </TimelineItem>
             ))}
           </div>
         </div>
 
+        {/* Certifications */}
         <div className="certifications-section">
           <h2 className="subsection-title">
-            <span className="section-icon">📜</span>
+            <span className="section-icon">&#9733;</span>
             Certifications
           </h2>
 
           <Card className="certifications-card">
             <div className="certifications-grid">
               {certifications.map((cert, index) => (
-                <div
-                  key={index}
-                  className="certification-item"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="cert-icon">🏆</div>
+                <div key={index} className="certification-item" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="cert-icon-mark">&#9670;</div>
                   <div className="cert-info">
                     <h4>{cert.name}</h4>
                     <p>{cert.provider}</p>
                     <span className="cert-year">{cert.year}</span>
+                    {cert.file && (
+                      <button className="cert-view-btn" onClick={() => setCertModal(cert)}>
+                        View Certificate
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -166,6 +260,7 @@ const Experience = () => {
           </Card>
         </div>
 
+        {/* Quick Stats */}
         <div className="achievements-section">
           <Card className="achievements-banner">
             <h3>Quick Stats</h3>
@@ -186,6 +281,24 @@ const Experience = () => {
           </Card>
         </div>
       </div>
+
+      {/* Certificate Modal */}
+      {certModal && (
+        <div className="cert-modal-overlay" onClick={() => setCertModal(null)}>
+          <div className="cert-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="cert-modal-close" onClick={() => setCertModal(null)} aria-label="Close">
+              &#10005;
+            </button>
+            <h3 className="cert-modal-title">{certModal.name}</h3>
+            <p className="cert-modal-provider">{certModal.provider} &middot; {certModal.year}</p>
+            {certModal.type === 'image' ? (
+              <img src={certModal.file} alt={`${certModal.name} certificate`} className="cert-modal-img" />
+            ) : (
+              <iframe src={certModal.file} title={`${certModal.name} certificate`} className="cert-modal-pdf" />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
