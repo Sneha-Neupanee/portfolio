@@ -82,14 +82,28 @@ const Home = () => {
       </div>
 
       <div className="home-content">
-        {/* Left Side */}
+        {/* Left Side - Text Content */}
         <div className="hero-text">
           <h1 className="hero-title">Hi! I'm <span className="name-highlight">Sneha Neupane</span></h1>
           <p className="hero-subtitle">{text}<span className="cursor-blink">|</span></p>
           <p className="hero-description">
-            I turn ideas into working products using code, data, and design. 
-            Focused on building systems that truly deliver value and feel alive.
+            I turn ideas into working products using code, data, and design.
           </p>
+
+          {/* Color Palette - Only visible here on mobile (via CSS order) */}
+          <div className="color-dots-container mobile-only">
+            <div className="color-dots">
+              {Object.keys(colors).map((c) => (
+                <div 
+                  key={c} 
+                  className={`color-dot ${theme === c ? 'active' : ''}`}
+                  style={{ background: colors[c] }} 
+                  onClick={() => setTheme(c)}
+                  title={c.charAt(0).toUpperCase() + c.slice(1)}
+                />
+              ))}
+            </div>
+          </div>
 
           <div className="time-box">
             <div className="time-row">
@@ -117,11 +131,10 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Right Side */}
+        {/* Right Side - Image (stays below on mobile) */}
         <div className="hero-image">
           <div className="image-container">
-            {/* Color Palette - Moved a bit higher */}
-            <div className="color-dots-container">
+            <div className="color-dots-container desktop-only">
               <div className="color-dots">
                 {Object.keys(colors).map((c) => (
                   <div 
@@ -135,7 +148,6 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Floating Image */}
             <div className="image-wrapper">
               <img src="/profile.jpg" alt="Sneha Neupane" />
               <div className="image-backdrop"></div>
