@@ -14,6 +14,7 @@ import FloatingParticles from './components/FloatingParticles';
 import CustomCursor from './components/CustomCursor';
 import ClickEffects from './components/ClickEffects';
 import MobileSwipeNavigator from "./components/MobileSwipeNavigator";
+import ScrollToTopButton from "./components/ScrollToTopButton"; // ✅ ADDED
 import './App.css';
 
 /* ScrollToTop component: scrolls to top on route change */
@@ -91,6 +92,9 @@ function App() {
 
           {/* Footer */}
           <Footer />
+
+          {/* ✅ SCROLL TO TOP BUTTON (GLOBAL) */}
+          <ScrollToTopButton />
         </div>
       </Router>
     </>

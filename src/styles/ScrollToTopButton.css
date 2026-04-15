@@ -1,0 +1,45 @@
+.scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  
+    width: 44px;
+    height: 44px;
+  
+    background-color: #ff9bb3; /* slightly darker baby pink */
+    color: #ffffff;
+  
+    border: none;
+    border-radius: 50%;
+  
+    font-size: 20px; /* thicker-looking arrow */
+    font-weight: 900; /* makes arrow bold */
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    cursor: pointer;
+  
+    z-index: 9999;
+  
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* gives depth */
+  
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  
+  .scroll-top-btn:hover {
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 6px 16px rgba(255, 155, 179, 0.5);
+  }
+  
+  /* mobile */
+  @media (max-width: 768px) {
+    .scroll-top-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      bottom: 16px;
+      right: 16px;
+    }
+  }

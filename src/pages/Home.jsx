@@ -52,8 +52,7 @@ const Home = () => {
           </h1>
           <p className="hero-subtitle">{text}<span className="cursor-blink">|</span></p>
           <p className="hero-description">
-            Crafting beautiful, functional web experiences with passion and creativity.
-            From front-end magic to back-end logic, I bring ideas to life.
+          I turn ideas into working products using code, data, and design focusing on systems that actually work.
           </p>
 
           <div className="cta-buttons">
