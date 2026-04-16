@@ -35,7 +35,7 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: 'TACKLES — Professional Service Platform',
+      title: 'TACKLES - Professional Service Platform',
       description: 'A stunning, pixel-perfect service platform showcasing exceptional UI/UX design principles. Features smooth animations, responsive layouts across all devices, modern glassmorphism effects, and meticulous attention to detail in every component. Demonstrates mastery of professional frontend development and design aesthetics.',
       image: '/tackles.png',
       techStack: ['React', 'CSS3', 'JavaScript', 'Responsive Design', 'Modern UI/UX'],
