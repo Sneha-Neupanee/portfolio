@@ -8,7 +8,6 @@ const Home = () => {
   const fullText = "Full Stack Developer & Creative Coder";
   const [index, setIndex] = useState(0);
 
-  // Live clock
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -36,7 +35,6 @@ const Home = () => {
       hour12: true,
     }).format(date);
 
-  // Theme color system
   const colors = {
     pink: "#FFB6C1",
     red: "#ff4d4d",
@@ -47,7 +45,6 @@ const Home = () => {
 
   const [theme, setTheme] = useState("pink");
 
-  // Typewriter effect
   useEffect(() => {
     if (index < fullText.length) {
       const timeout = setTimeout(() => {
@@ -61,7 +58,6 @@ const Home = () => {
   return (
     <div className="home-page" style={{ "--theme-color": colors[theme] }}>
 
-      {/* Background Particles */}
       <div className="particles-container">
         {Array.from({ length: 20 }).map((_, i) => (
           <div className="particle" key={i}></div>
@@ -84,7 +80,7 @@ const Home = () => {
             I turn ideas into working products using code, data, and design.
           </p>
 
-          {/* Color Palette — mobile only (shown between description and time box) */}
+          {/* Color Palette — mobile only */}
           <div className="color-dots-container mobile-only">
             <div className="color-dots">
               {Object.keys(colors).map((c) => (
@@ -134,7 +130,7 @@ const Home = () => {
         <div className="hero-image">
           <div className="image-container">
 
-            {/* Color Palette — desktop only (above image) */}
+            {/* Color Palette — desktop only */}
             <div className="color-dots-container desktop-only">
               <div className="color-dots">
                 {Object.keys(colors).map((c) => (
