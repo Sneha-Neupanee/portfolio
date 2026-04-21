@@ -53,10 +53,10 @@ const FRONTEND_PROJECTS = [
   },
   {
     id: 2,
-    name: "Sriyog Consulting",
-    image: "/sriyog.png",
-    link: "https://sriyog.com/",
-    desc: "Corporate identity site for a consulting firm with smooth navigation, service showcases, and professional UI.",
+    name: "Kathmandu School Map",
+    image: "/kathmandu.png",
+    link: "https://kathmandu-school-map.vercel.app/",
+    desc: "Interactive map and analytics dashboard for exploring Kathmandu Valley schools vector maps, clustering, heatmaps, area analysis, and aggregate statistics.",
   },
   {
     id: 3,
