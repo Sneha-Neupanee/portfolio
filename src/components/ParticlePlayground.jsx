@@ -70,6 +70,15 @@ const FRONTEND_PROJECTS = [
 const BACKEND_PROJECTS = [
   {
     id: 1,
+    name: "HR Desk",
+    image: "/employee.png",
+    link: "http://snehaneupane.kesug.com/public/login",
+    github: "https://github.com/Sneha-Neupanee/employees-management-using-laravel",
+    tech: ["Laravel", "PHP", "MySQL", "Sanctum", "Blade", "TailwindCSS", "Alpine.js"],
+    desc: "Role-based Employee Management System for internal HR operations covering attendance tracking, leave approvals, department CRUD, and a Sanctum-protected REST API built with clean Laravel architecture.",
+  },
+  {
+    id: 2,
     name: "K Handyman",
     image: "/k-handyman.png",
     link: "https://mernhandymanfinal.vercel.app/",
@@ -86,7 +95,7 @@ const BACKEND_PROJECTS = [
     desc: "Full-stack MERN marketplace connecting homeowners with skilled handymen. Real-time chat, Bayesian provider ranking, interactive maps, and end-to-end service management.",
   },
   {
-    id: 2,
+    id: 3,
     name: "SmartSales AI Assistant",
     image: "/smart.png",
     link: "https://smart-sales-with-ai-assistant.vercel.app/",
@@ -119,21 +128,14 @@ function useReveal() {
 }
 
 /* ─── Project card ───────────────────────────────────────────── */
-const ProjectCard = ({ project, index, windowWidth, isBackend }) => {
+const ProjectCard = ({ project, index }) => {
   const [ref, visible] = useReveal();
-  const desktopWidth =
-    windowWidth >= 1200 ? (isBackend ? 380 : 260) : "48%";
-  const cardWidth = windowWidth < 768 ? "90%" : desktopWidth;
 
   return (
     <div
       ref={ref}
       className={`pp-project-card ${visible ? "pp-visible" : ""}`}
-      style={{
-        transitionDelay: `${index * 140}ms`,
-        width: cardWidth,
-        margin: "0 auto",
-      }}
+      style={{ transitionDelay: `${index * 140}ms` }}
     >
       <div className="pp-card-img-wrap">
         <img
@@ -188,8 +190,8 @@ const ParticlePlayground = () => {
   const navigate = useNavigate();
   const [headerRef, headerVisible] = useReveal();
   const [threeDRef, threeDVisible] = useReveal();
-  const [feRef, feVisible]         = useReveal();
-  const [beRef, beVisible]         = useReveal();
+  const [feRef,     feVisible]     = useReveal();
+  const [beRef,     beVisible]     = useReveal();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -198,16 +200,10 @@ const ParticlePlayground = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isMobile = windowWidth < 768;
-
-  // Bigger canvas on mobile so the model feels present
+  const isMobile     = windowWidth < 768;
   const canvasWidth  = isMobile ? Math.min(windowWidth * 0.62, 320) : 400;
   const canvasHeight = isMobile ? Math.min(windowWidth * 0.72, 380) : 500;
-
-  // demo.svg scales proportionally beside the canvas
   const demoImgWidth = isMobile ? 100 : 180;
-
-  // Push demo.svg up ~1.5–2 cm on mobile (-45px), keep desktop at +15px
   const demoMarginTop = isMobile ? "-15px" : "15px";
 
   return (
@@ -237,7 +233,6 @@ const ParticlePlayground = () => {
           </h2>
         </div>
 
-        {/* Canvas + demo.svg side by side */}
         <div
           className="pp-3d-space"
           style={{
@@ -249,22 +244,11 @@ const ParticlePlayground = () => {
           }}
         >
           <ModelViewer width={canvasWidth} height={canvasHeight} />
-
-          {/* demo.svg — nudged up on mobile, normal on desktop */}
-          <div
-            style={{
-              marginTop: demoMarginTop,
-              flexShrink: 0,
-            }}
-          >
+          <div style={{ marginTop: demoMarginTop, flexShrink: 0 }}>
             <img
               src={demoSvg}
               alt="demo"
-              style={{
-                width: demoImgWidth,
-                height: "auto",
-                display: "block",
-              }}
+              style={{ width: demoImgWidth, height: "auto", display: "block" }}
             />
           </div>
         </div>
@@ -293,22 +277,9 @@ const ParticlePlayground = () => {
           </h2>
         </div>
 
-        <div
-          className="pp-projects-grid"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "26px",
-          }}
-        >
+        <div className="pp-projects-grid">
           {FRONTEND_PROJECTS.map((p, i) => (
-            <ProjectCard
-              key={p.id}
-              project={p}
-              index={i}
-              windowWidth={windowWidth}
-            />
+            <ProjectCard key={p.id} project={p} index={i} />
           ))}
         </div>
 
@@ -336,15 +307,9 @@ const ParticlePlayground = () => {
           </h2>
         </div>
 
-        <div className="pp-projects-grid pp-two-col">
+        <div className="pp-projects-grid pp-three-col">
           {BACKEND_PROJECTS.map((p, i) => (
-            <ProjectCard
-              key={p.id}
-              project={p}
-              index={i}
-              windowWidth={windowWidth}
-              isBackend={true}
-            />
+            <ProjectCard key={p.id} project={p} index={i} isBackend />
           ))}
         </div>
 
@@ -352,7 +317,8 @@ const ParticlePlayground = () => {
           <p className="pp-skill-desc">
             I design and build server-side systems that are fast, secure, and
             easy to maintain spanning Node/Express REST APIs, MongoDB, Python
-            FastAPI, real-time Socket.IO, JWT auth, and ML model deployment.
+            FastAPI, real-time Socket.IO, JWT auth, Laravel MVC with Sanctum,
+            and ML model deployment.
           </p>
         </div>
       </div>

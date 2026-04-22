@@ -179,19 +179,21 @@
   100% { background-position: 0% 0%; }
 }
 
-/* ── Projects grid ─────────────────────────────────────────── */
+/* ── Projects grids ────────────────────────────────────────── */
+
+/* Front-end: 3 equal columns */
 .pp-projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1.8rem;
   width: 100%;
   margin-bottom: 2.8rem;
 }
 
-/* Backend two-col — wider cards, comfortable gap */
-.pp-projects-grid.pp-two-col {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 460px));
+/* Backend: 3 equal columns, capped so cards stay readable on
+   wide monitors. Cards fill the section width at normal sizes. */
+.pp-projects-grid.pp-three-col {
+  grid-template-columns: repeat(3, minmax(0, 340px));
   justify-content: center;
   gap: 1.6rem;
   margin-bottom: 2.8rem;
@@ -206,6 +208,8 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+  /* equal height within each row */
+  align-self: stretch;
   opacity: 1;
   transform: none;
   transition: box-shadow 0.25s ease, border-color 0.25s ease,
@@ -391,15 +395,14 @@
    RESPONSIVE BREAKPOINTS
 ═══════════════════════════════════════════════════════════ */
 
-/* Tablet / small desktop (≤ 900 px) */
-@media (max-width: 900px) {
+/* Tablet / small desktop (≤ 960 px) — both grids drop to 2 cols */
+@media (max-width: 960px) {
   .pp-projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .pp-projects-grid.pp-two-col {
-    grid-template-columns: minmax(0, 460px);
-    max-width: 460px;
+  .pp-projects-grid.pp-three-col {
+    grid-template-columns: repeat(2, minmax(0, 340px));
     justify-content: center;
   }
 
@@ -408,6 +411,14 @@
   .pp-3d-space    { margin-bottom: 1.5rem; }
 
   .pp-footer-ctas { flex-direction: column; align-items: center; }
+}
+
+/* Narrow tablet (≤ 700 px) — backend drops to single column */
+@media (max-width: 700px) {
+  .pp-projects-grid.pp-three-col {
+    grid-template-columns: minmax(0, 420px);
+    justify-content: center;
+  }
 }
 
 /* Mobile (≤ 600 px) */
@@ -419,7 +430,7 @@
   .pp-section-label {
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-bottom: 1.8rem; /* ← was 3rem, reduced to close the gap */
+    margin-bottom: 1.8rem;
     justify-content: center;
   }
 
@@ -456,17 +467,14 @@
     align-items: flex-start !important;
   }
 
-  /* Single-column project grids on mobile */
-  .pp-projects-grid {
+  /* Single-column for all grids on mobile */
+  .pp-projects-grid,
+  .pp-projects-grid.pp-three-col {
     grid-template-columns: 1fr;
     max-width: 100%;
     margin: 0 auto 2.4rem;
     gap: 1.4rem;
-  }
-
-  .pp-projects-grid.pp-two-col {
-    grid-template-columns: 1fr;
-    max-width: 100%;
+    justify-content: unset;
   }
 
   .pp-project-card {
