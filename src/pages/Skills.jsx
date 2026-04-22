@@ -21,7 +21,7 @@ const Skills = () => {
             <img src={frontendSvg} alt="Frontend" className="skill-svg frontend" />
             <h3 className="ctitle">Interfaces & Web</h3>
             <div className="chips">
-              {['React','Next.js','JavaScript','TypeScript','Three.js','HTML5','CSS3','Tailwind CSS','UI/UX Design','Responsive Design'].map(s => (
+              {['React','Next.js','JavaScript','TypeScript','Three.js','HTML5','CSS3','Tailwind CSS','Alpine.js','UI/UX Design','Responsive Design'].map(s => (
                 <span key={s} className="chip">{s}</span>
               ))}
             </div>
@@ -37,7 +37,7 @@ const Skills = () => {
             <img src={backendSvg} alt="Backend" className="skill-svg backend" />
             <h3 className="ctitle">Server & Data</h3>
             <div className="chips">
-              {['Node.js','Express','Python','FastAPI','Django','MongoDB','PostgreSQL','REST APIs','Socket.IO'].map(s => (
+              {['Node.js','Express','Python','FastAPI','Django','Laravel','PHP','MongoDB','MySQL','PostgreSQL','REST APIs','Socket.IO','Sanctum','Blade'].map(s => (
                 <span key={s} className="chip">{s}</span>
               ))}
             </div>
