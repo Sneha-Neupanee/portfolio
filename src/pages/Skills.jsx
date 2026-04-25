@@ -29,7 +29,7 @@ const Skills = () => {
 
           <div className="card span4 pink-bg stat-card">
             <span className="clabel">Experience</span>
-            <div className="stat-num">4+</div>
+            <div className="stat-num">2+</div>
             <div className="stat-label">years building on the web</div>
           </div>
 
