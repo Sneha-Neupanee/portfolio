@@ -37,7 +37,7 @@ const Skills = () => {
             <img src={backendSvg} alt="Backend" className="skill-svg backend" />
             <h3 className="ctitle">Server & Data</h3>
             <div className="chips">
-              {['Node.js','Express','Python','FastAPI','Django','Laravel','PHP','MongoDB','MySQL','PostgreSQL','REST APIs','Socket.IO','Sanctum','Blade'].map(s => (
+              {['Node.js','Express','Python','FastAPI','Django','Laravel','PHP','MongoDB','MySQL', 'Docker','REST APIs','Socket.IO','Sanctum','Blade'].map(s => (
                 <span key={s} className="chip">{s}</span>
               ))}
             </div>
@@ -82,7 +82,7 @@ const Skills = () => {
           <div className="card span3 learning-card">
             <span className="clabel">Currently learning</span>
             <div className="chips">
-              {['Docker','DevOps','GraphQL','AWS'].map(s => (
+              {['DevOps','GraphQL','AWS'].map(s => (
                 <span key={s} className="chip outlined">{s}</span>
               ))}
             </div>
