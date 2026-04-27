@@ -304,6 +304,7 @@
   display: flex;
   gap: 0.7rem;
   flex-wrap: wrap;
+  align-items: center;
   margin-top: 0.4rem;
 }
 
@@ -311,6 +312,72 @@
   font-size: 0.82rem !important;
   padding: 0.5rem 1.1rem !important;
   text-decoration: none;
+}
+
+/* ── Deploy badge ──────────────────────────────────────────── */
+/*
+  Shown on cards where hideLiveDemo is true, replacing the
+  "Live Demo" button with a subtle pulsing status pill.
+*/
+.pp-deploy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #c05a8a;
+  background: linear-gradient(135deg, #fff0f6 0%, #ffe4f0 100%);
+  border: 1px dashed #f5b8d4;
+  border-radius: 20px;
+  padding: 0.35rem 0.85rem 0.35rem 0.65rem;
+  white-space: nowrap;
+  /* subtle shimmer sweep */
+  position: relative;
+  overflow: hidden;
+}
+
+.pp-deploy-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: ppBadgeShimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes ppBadgeShimmer {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* pulsing dot inside the badge */
+.pp-deploy-pulse {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FF69B4;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.55);
+  animation: ppPulseRing 1.8s ease-out infinite;
+}
+
+@keyframes ppPulseRing {
+  0%   { box-shadow: 0 0 0 0   rgba(255, 105, 180, 0.55); }
+  60%  { box-shadow: 0 0 0 5px rgba(255, 105, 180, 0);    }
+  100% { box-shadow: 0 0 0 0   rgba(255, 105, 180, 0);    }
+}
+
+.dark-mode .pp-deploy-badge {
+  background: linear-gradient(135deg, #2a1520 0%, #33192a 100%);
+  border-color: #6b3050;
+  color: #f0a0c8;
 }
 
 /* ── Footer CTAs ───────────────────────────────────────────── */
@@ -487,6 +554,11 @@
   .pp-card-title   { font-size: 0.95rem; }
   .pp-card-desc    { font-size: 0.8rem; }
   .pp-tech-badge   { font-size: 0.65rem; padding: 0.18rem 0.5rem; }
+
+  .pp-deploy-badge {
+    font-size: 0.68rem;
+    padding: 0.28rem 0.7rem 0.28rem 0.55rem;
+  }
 
   .pp-footer-ctas {
     flex-direction: column;

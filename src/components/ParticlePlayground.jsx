@@ -98,7 +98,7 @@ const BACKEND_PROJECTS = [
     id: 3,
     name: "SmartSales AI Assistant",
     image: "/smart.png",
-    link: "https://smart-sales-with-ai-assistant.vercel.app/",
+    hideLiveDemo: true,
     github: "https://github.com/Sneha-Neupanee/SmartSales-with-AI-Assistant",
     tech: ["React", "Python", "FastAPI", "TensorFlow", "OpenAI API", "Pandas"],
     desc: "AI-powered sales analytics platform with ML forecasting, natural language queries, OpenAI insights, and a live dashboard React frontend backed by Python FastAPI.",
@@ -161,14 +161,26 @@ const ProjectCard = ({ project, index }) => {
           </div>
         )}
         <div className="pp-card-actions">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="custom-btn btn-primary pp-btn"
-          >
-            Live Demo
-          </a>
+          {/* Show Live Demo only when hideLiveDemo is not set */}
+          {!project.hideLiveDemo && project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="custom-btn btn-primary pp-btn"
+            >
+              Live Demo
+            </a>
+          )}
+
+          {/* Deploying badge — shown in place of Live Demo when hideLiveDemo is true */}
+          {project.hideLiveDemo && (
+            <span className="pp-deploy-badge">
+              <span className="pp-deploy-pulse" />
+              Backend deploying
+            </span>
+          )}
+
           {project.github && (
             <a
               href={project.github}
@@ -176,7 +188,7 @@ const ProjectCard = ({ project, index }) => {
               rel="noopener noreferrer"
               className="custom-btn btn-secondary pp-btn"
             >
-              GitHub
+              {project.hideLiveDemo ? "Full Project on GitHub" : "GitHub"}
             </a>
           )}
         </div>
