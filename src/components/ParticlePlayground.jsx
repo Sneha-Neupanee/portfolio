@@ -18,7 +18,7 @@ function Model({ path }) {
 
 function ModelViewer({ width, height }) {
   return (
-    <div style={{ width: width, height: height, flexShrink: 0 }}>
+    <div style={{ width: width, height: height, flexShrink: 0, position: "relative", zIndex: 1 }}>
       <Canvas
         camera={{ position: [0, 1.2, 3.5], fov: 55 }}
         style={{ background: "transparent" }}
@@ -256,7 +256,7 @@ const ParticlePlayground = () => {
           }}
         >
           <ModelViewer width={canvasWidth} height={canvasHeight} />
-          <div style={{ marginTop: demoMarginTop, flexShrink: 0 }}>
+          <div style={{ marginTop: demoMarginTop, flexShrink: 0, position: "relative", zIndex: 1 }}>
             <img
               src={demoSvg}
               alt="demo"

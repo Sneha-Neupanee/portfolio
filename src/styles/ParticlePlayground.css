@@ -14,6 +14,10 @@
   align-items: center;
   gap: 0;
   text-align: center;
+  /* Fixes inherited pointer events issues and guarantees section interactivity */
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 /* ── "My Skills" label row ─────────────────────────────────── */
@@ -25,6 +29,8 @@
   margin-bottom: 4.5rem;
   opacity: 1;
   transform: none;
+  position: relative;
+  z-index: 10;
 }
 
 /* decorative shimmer lines */
@@ -94,6 +100,8 @@
   align-items: center;
   opacity: 1;
   transform: none;
+  position: relative;
+  z-index: 10;
 }
 
 /* heading row — number + title side by side */
@@ -136,6 +144,8 @@
   align-items: flex-start;
   width: 100%;
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
 }
 
 /* ── Description paragraph ─────────────────────────────────── */
@@ -188,6 +198,8 @@
   gap: 1.8rem;
   width: 100%;
   margin-bottom: 2.8rem;
+  position: relative;
+  z-index: 10;
 }
 
 /* Backend: 3 equal columns, capped so cards stay readable on
@@ -197,6 +209,8 @@
   justify-content: center;
   gap: 1.6rem;
   margin-bottom: 2.8rem;
+  position: relative;
+  z-index: 10;
 }
 
 /* ── Project card ─────────────────────────────────────────── */
@@ -214,6 +228,10 @@
   transform: none;
   transition: box-shadow 0.25s ease, border-color 0.25s ease,
     transform 0.25s ease;
+  /* Enforces clickability above potential canvas/background overlays */
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
 }
 
 .pp-project-card:hover {
@@ -306,6 +324,8 @@
   flex-wrap: wrap;
   align-items: center;
   margin-top: 0.4rem;
+  position: relative;
+  z-index: 30;
 }
 
 .pp-btn {
@@ -393,6 +413,9 @@
   position: relative;
   flex-direction: row;
   align-items: center;
+  /* Restores clickability over the background space */
+  z-index: 20;
+  pointer-events: auto;
 }
 
 /* animated gradient line above footer */
@@ -442,6 +465,9 @@
   transition: all 0.22s ease;
   white-space: nowrap;
   background: none;
+  position: relative;
+  z-index: 30;
+  pointer-events: auto;
 }
 
 .btn-primary  { background: #111; color: #fff; border-color: #111; }
