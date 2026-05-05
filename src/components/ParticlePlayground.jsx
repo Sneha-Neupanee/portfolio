@@ -335,7 +335,20 @@ const ParticlePlayground = () => {
         </div>
       </div>
 
-      {/* ── Footer CTAs ── */}
+      {/* ── Projects CTA — above the divider line ── */}
+      <div className="pp-projects-spotlight">
+        <p className="pp-spotlight-hint">
+          These are just the deployed highlights, there's a lot more waiting.
+        </p>
+        <button
+          className="custom-btn btn-primary pp-spotlight-btn"
+          onClick={() => navigate("/projects")}
+        >
+          Explore All My Projects →
+        </button>
+      </div>
+
+      {/* ── Footer CTA — "View My Skills" below the animated line ── */}
       <div
         className="pp-footer-ctas"
         style={{
@@ -347,12 +360,6 @@ const ParticlePlayground = () => {
           width: "100%",
         }}
       >
-        <button
-          className="custom-btn btn-primary"
-          onClick={() => navigate("/projects")}
-        >
-          View More Projects
-        </button>
         <button
           className="custom-btn btn-secondary"
           onClick={() => navigate("/skills")}
